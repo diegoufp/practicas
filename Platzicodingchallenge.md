@@ -65,4 +65,25 @@ if __name__ == "__main__":
     print(f'El area de este triangulo es {resultado}')
 ```
 
+## Dia 3 - Reloj
 
+¿Sabes cuántos segundos hay en 32 horas y 20 minutos? No te preocupes, yo tampoco. Para eso tenemos a las computadoras.
+El reto del día de hoy es escribir un programa que tome como parámetros las horas y los minutos y que nos calcule los segundos. 
+
+```python
+def segundero(horas, minutos):
+
+    horas_segundos = horas * 3600
+    minutos_segundos = minutos *60
+
+    return horas_segundos + minutos_segundos
+
+if __name__ == "__main__":
+
+    horas_input = int(input('Cuantas horas quieres convertir a segundos?: '))
+    minutos_input = int(input('Cuantos minutos quieres convertir a segundos?: '))
+
+    segundos = segundero(horas_input, minutos_input)
+
+    print(f'{horas_input} horas y {minutos_input} minutos equivalen a {segundos} segundos.')
+```
