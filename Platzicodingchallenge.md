@@ -10,13 +10,13 @@ El reto del día de hoy es escribir Hello, world! en todos los lenguajes de prog
 
 - **Python**
 
-```
-print ('Hello world')
+```python
+print('Hello world')
 ```
 
 - **C**
 
-```
+```c
 printf("Hello world");
 ```
 
@@ -70,6 +70,8 @@ if __name__ == "__main__":
 ¿Sabes cuántos segundos hay en 32 horas y 20 minutos? No te preocupes, yo tampoco. Para eso tenemos a las computadoras.
 El reto del día de hoy es escribir un programa que tome como parámetros las horas y los minutos y que nos calcule los segundos. 
 
+### Resolviendo reto 3
+
 ```python
 def segundero(horas, minutos):
 
@@ -87,3 +89,35 @@ if __name__ == "__main__":
 
     print(f'{horas_input} horas y {minutos_input} minutos equivalen a {segundos} segundos.')
 ```
+
+## Dia 4 - Repite la palabra
+
+¿Sabías que para repetir las mismas instrucciones dentro de un programa podemos utilizar for loops o while loops? ¿Sabías que todo lo que puedes hacer con esas loops lo puedes hacer con recursión?
+
+El reto del día de hoy es crear un programa que recibe como parámetro un string y la cantidad de veces que queremos repetir ese string y devuelve una cadena con las repeteciones. ¿El twist? Sólo puedes usar una función recursiva (pro tip: no olvides tu caso base).
+
+### Resolviendo reto 4
+Las funciones recursivas son funciones que se llaman a sí mismas durante su propia ejecución. Ellas funcionan de forma similar a las iteraciones, pero debe encargarse de planificar el momento en que dejan de llamarse a sí mismas o tendrá una función recursiva infinita.
+
+```python
+def repetidor_fraces(frace, veces, multiplo):
+
+    if veces == 0:
+        print(f'El resultado es ninguno, por que {frace}\nmultiplicado por 0 es igual a los amigos que tienes.')
+    elif veces <= 1:
+        print(multiplo)
+        return 0
+    else:
+        multiplo = (multiplo + ' ' + frace)
+        repetidor_fraces(frace, veces - 1, multiplo)
+    
+if __name__ == "__main__":
+    frase_input = input('Ingresa la frace que quieres repetir: ')
+    veces_input = int(input('Ingresa el numero de veces que quieres repetir la frace: '))
+
+    repetidor_fraces(frase_input, veces_input, frase_input) 
+```
+
+## Dia 5
+
+str replace()
