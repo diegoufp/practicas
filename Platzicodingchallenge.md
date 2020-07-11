@@ -30,7 +30,7 @@ El reto del día de hoy es escribir un programa que tome la base y la altura com
 
 ### Resolviendo reto 2
 
-Pra poder resolver este reto necesitas conocer la fórmula de Herón.
+Para poder resolver este reto necesitas conocer la fórmula de Herón.
 
 ```python
 
