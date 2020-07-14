@@ -26,7 +26,13 @@ if __name__ == "__main__":
     while i < 3:
         print('-' * 20)
         print(f'Ronda {i + 1} de 3')
-        print('Tijeras = 1\nPapel = 2\nPiedra = 3 \nRata = 4\nSpock = 5')
+        print(""" Elije tu mano:
+        [1] Tijeras
+        [2] Papel
+        [3] Piedra
+        [4] Rata
+        [5] Spock
+        """)
         jugada = int(input('Ingrega el numero de la jugada que quieres hacer: '))
 
         ganador = partida(jugada, user_name)
