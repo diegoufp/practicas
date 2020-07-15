@@ -180,7 +180,7 @@ if __name__ == "__main__":
 Este es un juego en el que nunca fui bueno, pero eso no significa que hacer un programa sea difícil.El reto del día de hoy es escribir un programa que reciba como parámetro “piedra”, “papel”, o “tijera” y determine si ganó el jugador 1 o el jugador 2. Bonus: ¿puedes hacer modificar tu programa para que el ganador sea el que gané 2 de 3 partidas?Ejemplo:```
 ppt(“piedra”, “papel”) ➞ “El ganador es el jugador 2”
 
-### Resolviendo reto 6
+### Resolviendo reto 7
 
 La biblioteca random contiene una serie de funciones relacionadas con los valores aleatorios. El listado completo de funciones de esta biblioteca se describe en el manual de Python.
 La función choice(secuencia) elige un valor al azar en un conjunto de elementos. Cualquier tipo de datos enumerable (tupla, lista, cadena, range) puede utilizarse como conjunto de elementos.
@@ -240,3 +240,43 @@ if __name__ == "__main__":
     else:
         print('error')
 ```
+
+## Dia 8 - Volumen de un cilindro 
+
+Las matemáticas son base fundamental de la lógica y programación, por eso es importante practicarlas constantemente. Un cilindro es un cuerpo geométrico que requiere de varias fórmulas, aplícalas en un programa que reciba datos como su altura y radio de las bases para mostrar el resultado acotado a un decimal.
+
+### Resolviendo reto 8
+
+```python
+import math
+
+def area(altura, radio):
+    pi = math.pi
+
+    a = 2 * pi * radio * (radio + altura)
+
+    return a
+
+def volumen(altura, radio):
+    pi = math.pi
+
+    v = (pi) * (radio ** 2) * (altura)
+
+    return v
+
+if __name__ == "__main__":
+    print('Con este programa podras calcular el area y el volumen de un cilindro.')
+    altura = float(input('Ingresa la altura del cilindro: '))
+    radio = float(input('Ingresa el radio del cilindro: '))
+
+    volumen_resultado = volumen(altura, radio)
+    area_resultado = area(altura, radio)
+    print(f'Tu cilindro tiene un volumen de {volumen_resultado} y su area es de {area_resultado}.')
+```
+
+
+## Dia 9 - Número secreto
+
+Este es un juego sencillo que trata de adivinar un número aleatorio, el truco está en que no sabes cuál es ese número pero en cada ingresarás un número y sabrás si este es mayor o menor al número secreto. Así que toma en cuenta estas restricciones para intentar adivinar el número y no olvides contar el número de intentos para mostrarlo una vez aciertes.
+
+### Resolviendo reto 9
