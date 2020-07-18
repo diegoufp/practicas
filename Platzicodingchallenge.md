@@ -312,3 +312,55 @@ if __name__ == "__main__":
     else:
         ruleta(numero)
 ```
+
+
+## Dia 10 - Traductor de _Pig Latin_
+
+El Pig Latin es una lengua lúdica que consiste en modificar las palabras con base en las siguientes condiciones:
+
+1. Si una palabra comienza con sonido de consonante, se pasan todas las consonantes antes de la primer vocal y se agrega la sílaba “ay” al final (comida = omidacay).
+
+2. Si la palabra inicia con vocal, entonces agrega la sílaba “way” al final (onomatopeya = onomatopeyaway).
+
+Tu objetivo es crear un programa que reciba un texto y lo traduzca a esta lengua ¿qué resultados obtuviste?
+
+
+### Resolviendo el reto 10
+
+
+
+## Dia 11 - Generador de contraseñas
+
+Un ejercicio que siempre resulta útil para aplicar aleatoriedad es la generación de contraseñas. Básicamente debes crear un string de caracteres al azar tomando en cuenta las siguientes condiciones que el usuario debe poder elegir:
+
+- Longitud de la contraseña.
+- Si incluirá minúsculas, mayúsculas, números y caracteres especiales (incluyendo espacios).
+
+### Resolviendo el reto 11
+
+
+## Dia 12 - Próximo cumpleaños
+
+Muchos lenguajes de programación cuentan con un módulo para manejar tiempo y fechas. Haz uso de este módulo para crear un programa al que le ingreses tu fecha de nacimiento y te diga cuantos días faltan para tu próximo cumpleaños.
+
+### Resolviendo el reto 12
+
+
+
+## Dia 13 - Calculadora de propina
+
+Imagina que pediste comida a domicilio (porque debemos quedarnos en casa), así que crearás un programa al cual ingresarás el valor de los platillos ordenados, obtendrás la suma total de la comida y calcularás un porcentaje de propina. Recuerda que puedes ingresar una cantidad indeterminada de platillos, indica a tu programa cuando calcular el resultado final.
+
+### Resolviendo el reto 13
+
+
+
+## Dia 14 - Números primos
+
+Escribe un programa al que le indiques un número cómo límite y determinará todos los números primos desde el 1 hasta el número límite ingresado.
+Recuerda que los números primos tienen las siguientes características:
+
+- Es un número natural entero mayor a 1.
+- Tiene únicamente 2 divisores: el mismo número y el 1.
+
+### Resolviendo el reto 14
