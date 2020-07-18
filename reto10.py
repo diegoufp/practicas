@@ -1,18 +1,16 @@
-from itertools import islice
 
-def traductor(mucho_texto):
+    def traductor(mucho_texto):
 
     vocales = ['a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U']
 
     primera_letra = mucho_texto[0]
 
     i = 0
-    vocal = vocales[i]
     while i < 10:
-
+        vocal = vocales[i]
         if primera_letra == vocal:
             traduccion = mucho_texto[:] + 'way'
-            print(i)
+
             return traduccion
         else:
             i += 1
@@ -22,8 +20,8 @@ def traductor(mucho_texto):
         return traduccion
     else:
         traduccion = 'Ocurrio un error'
+        return traduccion
 
-    return 0
 
 if __name__ == "__main__":
     print('Traductor a Pig Latin ')
@@ -31,4 +29,4 @@ if __name__ == "__main__":
 
     texto_traducido = traductor(mucho_texto)
 
-    print(texto_traducido)
+    print('Texto traducido:\n',texto_traducido)

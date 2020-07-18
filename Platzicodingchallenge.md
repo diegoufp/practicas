@@ -327,6 +327,56 @@ Tu objetivo es crear un programa que reciba un texto y lo traduzca a esta lengua
 
 ### Resolviendo el reto 10
 
+El método **split** devuelve una lista de cadenas después de dividir la cadena dada por el separador especificado.
+La función **join** convierte una lista en una cadena formada por los elementos de la lista separados por comas.
+
+
+```python
+def traductor_de_palabras(mucho_texto):
+
+    vocales = ['a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U']
+
+    activador = 0
+    primera_letra = mucho_texto[0]
+    palabra_corregida = None
+
+    for i in vocales:
+
+        if i == primera_letra:
+            palabra_corregida = mucho_texto + 'way'
+            return palabra_corregida
+        else:
+            activador += 1
+
+    if activador == 10:
+        palabra_corregida = mucho_texto[1:] + mucho_texto[0] + 'ay'
+
+        return palabra_corregida
+    else:
+        return 'ocurrio un error'
+
+def separador_de_palabras(mucho_texto):
+    mucho_texto = mucho_texto
+    particion = mucho_texto.split()
+    j = 0
+    for i in particion:
+        palabra_corregida = traductor_de_palabras(i)
+        particion[j] = palabra_corregida
+        j += 1
+    
+    reconstruccion = ' '.join(particion)
+
+    return reconstruccion
+
+if __name__ == "__main__":
+    print('Traductor a Pig Latin ')
+    mucho_texto = input('Ingresa el texto que quieres traducir a Pig Latin: ')
+
+    texto_traducido = separador_de_palabras(mucho_texto)
+
+    print('Texto traducido:\n',texto_traducido)
+```
+
 
 
 ## Dia 11 - Generador de contraseñas
