@@ -1,5 +1,5 @@
 
-    def traductor(mucho_texto):
+def traductor(mucho_texto):
 
     vocales = ['a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U']
 
