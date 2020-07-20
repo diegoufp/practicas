@@ -423,6 +423,9 @@ if __name__ == '__main__':
 
 Muchos lenguajes de programación cuentan con un módulo para manejar tiempo y fechas. Haz uso de este módulo para crear un programa al que le ingreses tu fecha de nacimiento y te diga cuantos días faltan para tu próximo cumpleaños.
 
+
+### Resolviendo el reto 12
+
 ```python
 from datetime import datetime, timedelta
 
@@ -456,8 +459,6 @@ if __name__ == "__main__":
     days_for_birthday = birthday(day_input, month_input, year_input)
     print(f'Faltar {days_for_birthday} dias para tu cumpleaños')
 ```
-
-### Resolviendo el reto 12
 
 
 
