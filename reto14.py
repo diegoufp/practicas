@@ -1,21 +1,15 @@
-def primos(limit):
+def primo(limite):
 
-    for x in range(2,limit + 1):
-        if x == 2:
-            print(x)
-        elif x == 3:
-            print(x)
-        elif x == 5:
-            print(x)
-        elif x == 7:
-            print(x)
+    for n in range(2, limite + 1):
+        for x in range(2, n):
+            if n % x == 0:
+                print(n, 'equals', x, '*', n//x)
+                break
         else:
-            if x%2 != 0 and x%3 != 0 and x%5 != 0 and x%7 != 0 and x%x == 0:
-                print(x)
-            else:
-                continue
+        # loop fell through without finding a factor
+            print(n, 'is a prime number')
 
-if __name__ == "__main__":
-    limit = int(input('Ingresa un numero limite para calcular los numero primos: '))
+if __name__ == '__main__':
+    limite = int(input('Ingresa un limite para se sencuencia de numeros: '))
 
-    primos(limit)
+    primo(limite)
