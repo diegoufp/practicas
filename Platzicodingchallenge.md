@@ -577,3 +577,16 @@ if __name__ == "__main__":
 
     primos(limit)
 ```
+
+## Dia 15 - Calculadora de volúmenes, el usuario debe elegir entre Cilindro, Cubo y Esfera
+
+Las matemáticas son base fundamental de la lógica y programación, por eso es importante practicarlas constantemente. Un cilindro es un cuerpo geométrico que requiere de varias fórmulas, aplícalas en un programa que reciba datos como su altura y radio de las bases para mostrar el resultado acotado a un decimal.
+
+### Resolviendo el reto 15
+
+
+## Dia 16 - Calculadora v2
+
+Te diste cuenta de que muchas veces hacemos cálculos que son con más de dos valores, quiero que crees el algoritmo para programar una calculadora a la que le puedas agregar tantos números como tú requieras, deberá servir para adiciones y multiplicaciones
+
+### Resolviendo el reto 16
