@@ -72,8 +72,13 @@ def func(arg, *, kw_only1, kw_only2):
 **var-keyword**: especifica que arbitrariamente se pueden proporcionar muchos argumentos de palabras clave (además de cualquier argumento de palabras clave ya aceptado por otros parámetros). Dicho parámetro se puede definir anteponiendo el nombre del parámetro con **, por ejemplo, kwargs en el ejemplo siguiente:
 ```python
 def func(**kwargs):
+    for kw in kwargs:
+        print(kw, ":", kwargs[kw])
 ```
-
+Se podría llamar así:
+```python
+func(shopkeeper="Michael Palin", client="John Cleese", sketch="Cheese Shop Sketch")
+```
 ## Argumento posicional
 
 Un argumento que no es un argumento de palabra clave. Los argumentos posicionales pueden aparecer al comienzo de una lista de argumentos y / o pasarse como elementos de un iterativo precedido por *. Por ejemplo:
