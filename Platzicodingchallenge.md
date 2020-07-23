@@ -590,3 +590,22 @@ Las matemáticas son base fundamental de la lógica y programación, por eso es 
 Te diste cuenta de que muchas veces hacemos cálculos que son con más de dos valores, quiero que crees el algoritmo para programar una calculadora a la que le puedas agregar tantos números como tú requieras, deberá servir para adiciones y multiplicaciones
 
 ### Resolviendo el reto 16
+```python
+def calculadora(operation):
+
+    try:
+        result = eval(operation)
+        return result
+    except (NameError, TypeError, SyntaxError) as e:
+        print(f'{e}\n')
+        print(f'No introdujiste un valor numérico, de operación o la la operacion no tiene sentido. Intenta de nuevo.')
+    else:
+        return result
+
+if __name__ == '__main__':
+    operation = input('Ingresa la operacion que quieres resolver: ')
+
+    result = calculadora(operation)
+
+    print(result)
+```
