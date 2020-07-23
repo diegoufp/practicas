@@ -55,8 +55,52 @@ def f(a, L=None):
     L.append(a)
     return L
 ```
+## Parámetros especiales
 
-## Argumento de palabra clave
+Por defecto, los argumentos se pueden pasar a una función de Python por posición o explícitamente por palabra clave. Para facilitar la lectura y el rendimiento, tiene sentido restringir la forma en que se pueden pasar los argumentos para que un desarrollador solo tenga que mirar la definición de la función para determinar si los elementos se pasan por posición, por posición o palabra clave, o por palabra clave.
+
+Una definición de función puede verse así:
+```python
+def f(pos1, pos2, /, pos_or_kwd, *, kwd1, kwd2):
+      -----------    ----------     ----------
+        |             |                  |
+        |        Positional or keyword   |
+        |                                - Keyword only
+         -- Positional only
+```
+
+donde /y *son opcionales. Si se usan, estos símbolos indican el tipo de parámetro según cómo se pueden pasar los argumentos a la función: solo posicional, posicional o palabra clave y solo palabra clave. Los parámetros de palabras clave también se denominan parámetros con nombre.
+
+Como orientación:
+
+- Use posicional solo si desea que el nombre de los parámetros no esté disponible para el usuario. Esto es útil cuando los nombres de los parámetros no tienen un significado real, si desea imponer el orden de los argumentos cuando se llama a la función o si necesita tomar algunos parámetros posicionales y palabras clave arbitrarias.
+
+- Use solo palabras clave cuando los nombres tengan significado y la definición de la función sea más comprensible al ser explícito con los nombres o si desea evitar que los usuarios confíen en la posición del argumento que se pasa.
+
+- Para una API, use solo posicional para evitar que se rompan los cambios de la API si el nombre del parámetro se modifica en el futuro.
+
+
+
+Finalmente, considere esta definición de función que tiene una posible colisión entre el argumento posicional `name` y `**kwds` que tiene `name` como clave:
+```python
+def foo(name, **kwds):
+    return 'name' in kwds
+```
+No hay una llamada posible que lo haga regresar `True` ya que la palabra clave `'name'` siempre se unirá al primer parámetro. Por ejemplo:
+```python
+>>> foo(1, **{'name': 2})
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: foo() got multiple values for argument 'name'
+```
+Pero usando /(solo argumentos posicionales), es posible ya que permite namecomo argumento posicional y 'name'como clave en los argumentos de palabras clave:
+```python
+def foo(name, /, **kwds):
+    return 'name' in kwds
+>>> foo(1, **{'name': 2})
+True
+```
+### Argumento de palabra clave
 
 Argumento precedido por un identificador (p name=. ej. ) en una llamada a función o pasado como un valor en un diccionario precedido por **.Por ejemplo:
 ```python
@@ -79,7 +123,20 @@ Se podría llamar así:
 ```python
 func(shopkeeper="Michael Palin", client="John Cleese", sketch="Cheese Shop Sketch")
 ```
-## Argumento posicional
+
+Los diccionarios pueden entregar argumentos de palabras clave con **-operator:
+```python
+>>> def parrot(voltage, state='a stiff', action='voom'):
+...     print("-- This parrot wouldn't", action, end=' ')
+...     print("if you put", voltage, "volts through it.", end=' ')
+...     print("E's", state, "!")
+...
+>>> d = {"voltage": "four million", "state": "bleedin' demised", "action": "VOOM"}
+>>> parrot(**d)
+-- This parrot wouldn't VOOM if you put four million volts through it. E's bleedin' demised !
+```
+
+### Argumento posicional
 
 Un argumento que no es un argumento de palabra clave. Los argumentos posicionales pueden aparecer al comienzo de una lista de argumentos y / o pasarse como elementos de un iterativo precedido por *. Por ejemplo:
 ```python
@@ -95,6 +152,14 @@ def func(posonly1, posonly2, /, positional_or_keyword):
 **var-positional** : especifica que se puede proporcionar una secuencia arbitraria de argumentos posicionales (además de cualquier argumento posicional ya aceptado por otros parámetros). Dicho parámetro se puede definir anteponiendo el nombre del parámetro con *, por ejemplo, argumentos en lo siguiente:
 ```python
 def func(*args)
+```
+Cuando los argumentos ya están en una lista o tupla pero necesitan ser desempaquetados para una llamada de función que requiere argumentos posicionales separados. Por ejemplo, la range()función integrada espera argumentos de inicio y detención separados . Si no están disponibles por separado, escriba la llamada a la función con el *operador para desempaquetar los argumentos de una lista o tupla:
+```python
+>>> list(range(3, 6))            # normal call with separate arguments
+[3, 4, 5]
+>>> args = [3, 6]
+>>> list(range(*args))            # call with arguments unpacked from a list
+[3, 4, 5]
 ```
 
 ## replace( * [, nombre] [, tipo] [, predeterminado] [, anotación] ) 
@@ -115,3 +180,16 @@ Cree una nueva instancia de parámetro basada en la instancia reemplazada en la 
 ```
 Modificado en la versión 3.4: en Python 3.3, los objetos de parámetro podían nameestablecerse en Nonesi kindse configuraron en POSITIONAL_ONLY. Esto ya no está permitido.
 
+## Lambda
+
+Se pueden crear pequeñas funciones anónimas con la lambdapalabra clave. Esta función devuelve la suma de sus dos argumentos: . Las funciones de Lambda se pueden usar donde se requieran objetos de función. Están sintácticamente restringidos a una sola expresión. Semánticamente, son solo azúcar sintáctico para una definición de función normal. Al igual que las definiciones de funciones anidadas, las funciones lambda pueden hacer referencia a variables del ámbito que las contiene: `lambda a, b: a+b`
+```python
+>>> def make_incrementor(n):
+        return lambda x: x + n
+
+>>> f = make_incrementor(42)
+>>> f(0)
+42
+>>> f(1)
+43
+```
