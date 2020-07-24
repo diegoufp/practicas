@@ -193,3 +193,22 @@ Se pueden crear pequeñas funciones anónimas con la lambdapalabra clave. Esta f
 >>> f(1)
 43
 ```
+
+## Anotaciones de funciones
+
+Las anotaciones se almacenan en el `__annotations__` atributo de la función como un diccionario y no tienen efecto en ninguna otra parte de la función. Las anotaciones de parámetros están definidas por dos puntos después del nombre del parámetro, seguido de una expresión que evalúa el valor de la anotación. Las anotaciones de retorno se definen mediante un literal `->`, seguido de una expresión, entre la lista de parámetros y los dos puntos que indican el final de ladefdeclaración. El siguiente ejemplo tiene un argumento posicional, un argumento de palabra clave y el valor de retorno anotado:
+```python
+>>> def f(ham: str, eggs: str = 'eggs') -> str:
+...     print("Annotations:", f.__annotations__)
+...     print("Arguments:", ham, eggs)
+...     return ham + ' and ' + eggs
+...
+>>> f('spam')
+Annotations: {'ham': <class 'str'>, 'return': <class 'str'>, 'eggs': <class 'str'>}
+Arguments: spam eggs
+'spam and eggs'
+```
+
+## [PEP 8](https://translate.googleusercontent.com/translate_c?depth=1&hl=es&prev=search&pto=aue&rurl=translate.google.com&sl=en&sp=nmt4&u=https://www.python.org/dev/peps/pep-0008/&usg=ALkJrhjVz_jM55YIJpeorj0NyU-VftIbHg "PEP 8") - Guía de estilo para código Python
+
+Una guía de estilo trata sobre la coherencia. La coherencia con esta guía de estilo es importante. La consistencia dentro de un proyecto es más importante. La consistencia dentro de un módulo o función es lo más importante.
