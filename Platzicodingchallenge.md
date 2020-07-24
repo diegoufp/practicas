@@ -612,3 +612,10 @@ if __name__ == '__main__':
 
     print(result)
 ```
+
+
+## Dia 17 - Ordenar una lista de números de mayor a menor
+
+El próximo reto será que ordenes una lista de 10 números aleatorios de mayor a menor y viceversa.
+
+### Resolviendo el reto 17
