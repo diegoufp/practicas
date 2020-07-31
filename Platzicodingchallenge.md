@@ -619,3 +619,34 @@ if __name__ == '__main__':
 El próximo reto será que ordenes una lista de 10 números aleatorios de mayor a menor y viceversa.
 
 ### Resolviendo el reto 17
+
+## Dia 18 - Memory (parte 1)
+
+Crea un código que te muestre 4 caracteres entre los siguientes de forma aleatoria: "#$%()/&
+
+### Resolviendo el reto 18
+
+## Dia 19 - Memory (part2)
+
+Lleva un registro del Orden en el que aparecieron los caracteres
+
+### Resolviendo el reto 19
+
+## Dia 20 - Memory (part3)
+
+Dale al usuario un menú para que elija en el orden correcto los caracteres
+
+### Resolviendo el reto 20
+
+## Dia 20 - Memory (part4)
+
+Crea el código para evaluar si el orden del usuario fue el mismo mostrado por el programa y decirle si ganó o en caso contrario si perdió
+
+### Resolviendo el reto 20
+
+## Dia 21 - ¿Cuánto vas a ahorrar?
+
+"El interés compuesto te sirve para generar más dinero gracias a los intereses que generas, es decir, hace que el valor que se paga por intereses se vaya aumentando mes a mes, por que el dinero sobre el cuál se hace el cálculo del interés se incrementa cada vez que se liquidan los respectivos intereses que ganaste el mes previo.
+Crea una calculadora que te diga cuánto vas a tener en 6 meses, 1 año y 2 años al ahorrar 100 dólares con una tasa de interés a tu favor del 4%
+
+### Resolviendo el reto 21
