@@ -638,15 +638,269 @@ Dale al usuario un menú para que elija en el orden correcto los caracteres
 
 ### Resolviendo el reto 20
 
-## Dia 20 - Memory (part4)
+## Dia 21 - Memory (part4)
 
 Crea el código para evaluar si el orden del usuario fue el mismo mostrado por el programa y decirle si ganó o en caso contrario si perdió
 
-### Resolviendo el reto 20
+### Resolviendo el reto 21
 
-## Dia 21 - ¿Cuánto vas a ahorrar?
+## Dia 22 - ¿Cuánto vas a ahorrar?
 
 "El interés compuesto te sirve para generar más dinero gracias a los intereses que generas, es decir, hace que el valor que se paga por intereses se vaya aumentando mes a mes, por que el dinero sobre el cuál se hace el cálculo del interés se incrementa cada vez que se liquidan los respectivos intereses que ganaste el mes previo.
 Crea una calculadora que te diga cuánto vas a tener en 6 meses, 1 año y 2 años al ahorrar 100 dólares con una tasa de interés a tu favor del 4%
 
-### Resolviendo el reto 21
+### Resolviendo el reto 22
+
+## Dia 23 - ¿Qué pasaría sí?
+
+Siguiendo con el reto anterior de ¿Cuanto vas a ahorrar?:
+
+Ahora quiero que le agregues a tu programa de interés compuesto la capacidad de variar el valor inicial de tu ahorro
+
+## Dia 24 - ¿Puedo ahorrar otros periodos de tiempo? 
+
+Tu banco quiere permitirte ahorrar en nuevos intérvalos de tiempo que tú eleijas, agrega la funcionalidad a tu calculadora de interés compuesto de poner una cantidad de meses de ahorro variable
+
+## Dia 25 - ¿Puedo ahorrar en otros bancos?
+
+Te llegó un correo de un banco rival diciéndote que ellos te ofrecen un 3% de interés plus un 7% extra año con año
+¿¿Cuál de los dos bancos te conviene más para un año de ahorro?¿Cuál para 2?¿Cuál para 3?
+
+## Dia 26 - Ordenando ando
+
+Genera un set de 300 nombres en la siguiente página de internet `http://www.generatedata.com/?lang=es` y descárgalo como CSV
+
+## Dia 27 - Ordenando ando 2
+
+Ordena tu set de nombres con cualquier algoritmo de ordenamiento que quieras, asegúrate de imprimir cuánto tiempo se demoró tu equipo en ordenar.
+
+## Dia 28 - Ordenando ando 3
+
+Prueba otro algoritmo de ordenamiento con el mismo data set y compara el tiempo, comparte en el foro cuál fue tu algoritmo con mejor rendimiento y por qué
+
+## Dia 29 - Código Morse
+El código morse te permite mandar señales mediante cualquier medio que pueda ser intermitente. Esto significa que puedes mandar señales a través de pulsos eléctricos (como en el telégrafo), audio, luz, etc. El reto del día de hoy es crear un decodificador de código morse. Por ejemplo:
+
+`hola mundo -> .... --- .-.. .- -- ..- -. -.. ---`
+
+## Dia 30 - Teléfono
+
+Los botones de un teléfono también representan letras. Por ejemplo, en un teléfono podemos decir que:
+
+2 ABC
+3 DEF
+4 GHI
+5 JKL
+6 MNO
+7 PRS
+8 TUV
+9 WXY
+
+Dado un teléfono de 7 dígitos, crea un programa que calcule todas las palabras posibles.
+
+## Dia 31 - Risk 
+
+Risk es un juego de mesa en donde las batallas se representan a través de dados. El atacante puede utilizar 3 dados y el defensor 2. Después de cada tiro se comparan los dos dados con mayor número y los segundos dos dados con mayor número. Crea un simulador de risk (que gire dados aleatoriamente) y determine los soldados que pierde cada jugador.
+
+Ejemplo 1
+Atacante: 5 3 1
+Defensor 4 4
+
+Defensor pierde 1 (5 es mayor que 4) y Atacante pierde 1 (4 es mayor que 3)
+
+Ejemplo 2
+Atacante 4 3 2
+Defensor 6 5
+
+Atacante pierde 2 (6 es mayor que 4 y 5 es mayor que 3)
+
+Ejemplo 3
+Atacante 4 3 2
+Defensor 3 2
+
+Defensor pierde 2 (4 es mayor que 3 y 3 es mayor que 2)
+
+## Dia 32 - Teorema de Pitágoras
+
+El Teorema de Pitagoras nos puede ayudar a encontrar la distancia entre dos puntos en un plano. Crea una calculadora que determine la distancia dado dos puntos. Por ejemplo,
+
+Punto A = (3, 4)
+Punto B = (5, 7)
+Distancia = 3.605551
+
+## Dia 33 - Ecuaciones cuadráticas
+
+Seguro te acuerdas que en la escuela te enseñaron a resolver ecuaciones de segundo grado mediante la fórmula general para la obtención de raíces. Una ecuación de segundo grado tiene la forma: (A * X^2) + (B * X) + C = 0. Lee este artículo de Wikipedia `https://es.wikipedia.org/wiki/Ecuación_de_segundo_grado` y crea una calculadora que pueda resolver cualquier ecuación cuadrática.
+
+## Dia 34 - Fibonacci de 10,000
+
+Los números de Fibonacci nos ayudan a modelar crecimiento. La definición de Fibonacci es F(n) = F(n - 1) + F(n - 2). El reto del día de hoy es crear un programa que pueda calcular los número de Fibonacci y que nos digas cuál es el resultado de Fibonacci de 9567. Si estás teniendo problemas, te recomiendo ver este video: `https://platzi.com/clases/1835-programacion-estocastica/26430-optimizacion-de-fibonacci/`
+
+## Dia 35 - Números primos
+
+Los primeros números primos son: 2, 3, 5, 7, 11, y 13. De esta forma podemos decir que 13 es el sexto número primo. Cuál es el 10000 número primo?
+
+## Dia 36 - Números aleatorios
+
+Crea un programa que te permita simular el tiro de n dados de 6 caras
+
+## Dia 37 - Números aleatorios 2
+
+Crea un programa que te permite simular el tiro de n dados de n caras
+
+## Dia 38 - Juego de dados
+
+Con tus dados crea un sistema de turnos para que 3 jugadores puedan “tirar 2 dados cada uno” y que gane el que mayor número tenga
+
+## Dia 39 - Avanzando nuestro juego de datos
+
+Crea una librería o biblioteca que contenga las funciones tirar dados, que reciba como parámetro cuántos dados van a ser tirados y que retorne los datos resultantes en forma de array.
+
+## Dia 40 - ¿Te conviene esta apuesta?
+
+¿Te conviene esta apuesta?
+
+Imagina que una persona te dice que debes adivinar un número al azar entre 0 y 100. Si lo adivinas en la primera oportunidad te da 4 usd, en la segunda 3 usd, en la tercera 2 usd, en la cuarta 1 usd, en la quinta 0 usd y a partir de la sexta tú le pagas 1 usd, en la séptima 2 usd, etc.
+
+¿Debería jugar este juego?
+
+Tip: piensa en búsqueda binaria y cuánto te tardarías en promedio en encontrar el número aleatorio.
+
+## Dia 41 - Pick a Character!
+
+Es hora de desarrollar nuestros personajes (aka) escribir más código pero antes de eso, imaginarlos,
+escribe 5 personajes diferentes que sigan el arquetipo del tarot (lo encuentras en el curso de diseño de escritura de personajes) y desarrolla
+qué ataques tendrá, si serán resistentes o si harán mucho daño pero serán débiles.
+
+## Dia 42 - Code a character!
+
+Programa tu personaje, crea un objeto donde definas el nombre del personaje y además le especifiques
+cuántos puntos de ataque tiene y cuántos de defensa, estos números deben ir del 0 al 5
+
+## Dia 43 - Hora de aventura!
+
+Siguiendo el reto pasado
+
+Crea un script que se encargue de darle turnos y atacar o defender por turnos para cada personaje
+
+## Dia 44 - Suma recursiva
+
+Escribe un programa que esté recibiendo valores numéricos uno tras otro hasta que el usuario indique cero o ninguno. Muestra como salida la suma total de los números utilizando una función recursiva y sin utilizar bucles de algún tipo.
+
+Puedes usar el curso de JavaScript Basico y el de Curso de Expresiones Regulares para guiarte .
+
+## Dia 45 - Generador de IPs
+
+Una IP se compone de 4 números separados por un punto (.) y estos van del 0 al 255. Debes crear un programa que genere IPs de forma aleatoria con estas características (ejemplo: 1.127.0.231), puedes indicarle que genere 1000 distintas y depués validar si se repite alguna o listarlas en orden ascendiente.
+
+## Dia 46 - Vacas y toros
+
+Crea un programa para jugar “Vacas y toros” con el jugador. El juego consiste en que se genera un número aleatorio de 4 dígitos (no visible) y el usuario debe ingresar un número igualmente de 4 dígitos. Por cada dígito acertado el jugador “obtiene” una vaca y si no acierta alguno “obtiene” un toro. Muestra en pantalla los resultados y termina el juego cuando el usuario tenga 10 vacas.
+
+## Dia 47 - Blackjack
+
+Este es un juego de cartas muy popular en el que consiste tomar cartas de una baraja hasta sumar 21 puntos o acercarse lo más posible. Así que crearás un programa donde jugarás contra la computadora tomando las siguientes consideraciones:
+
+- Cada jugar inicia con 2 cartas
+- Cada carta tiene un valor del 1 al 10.
+- Las cartas Jack, Queen, King valen 10 puntos cada una. Y su jerarquía va de menor a mayor respectivamente.
+- El As puede valer 1 u 11 según sea conveniente. Es decir que al tener un As en mano se pueden tomar más cartas si el jugador lo decide.
+- Un As y una carta con valor de 10 puntos equivale a victoria.
+- El jugador decide si tomar una carta adicional o no. En caso de no tomar alguna otra se comparan las manos.
+- En caso de empate se compara jerarquía de las cartas.
+    Pierde el jugador que tenga más de 21 puntos en mano inmediatamente.
+
+## Dia 48 - Frecuencia de una palabra
+
+Crea un programa al cual pueda recibir de entrada algún texto, de preferencia algo que tenga la extensión de uno o varios párrafos. Al mismo tiempo debe poder recibir otra palabra y contar la frecuencia de la misma en el primer texto. Tu programa debe ser capaz de reconocer mayúsuclas, minúsculas y caracteres especiales.
+
+## Dia 49 - Movimiento aleatorio
+
+Tienes un robot que se mueve aleatoriamente en cuatro direcciones (arriba, abajo, izquierda y derecha) en un plano de 2 dimensiones (x, y) partiendo del origen (0, 0). Debes escribir un programa que indique cuantos pasos dará, registrar cuantos pasos dio en cada dirección y en que coordenada terminó su recorrido.
+
+## Dia 50 - Validador de contraseñas
+
+En retos anteriores has creado un generador de contraseñas, ahora validarás su nivel de seguridad. Así que tu programa debe recibir un string con una contraseña considerando los siguientes parámetros:
+
+- Incluir al menos una letra minúscula
+- Incluir al menos una letra mayúscula
+- Incluir al menos un número
+- Incluir al menos un caracter especial
+- Tener una longitud mínima de 8 caracteres
+- Se evaluará la contraseña con las siguientes características:
+- Insegura: cumple con solo 2 o menos parámetros
+- Medianamente segura: cumple de 3 o 4 parámetros
+- Segura: cumple con todos los parámetros
+
+## Dia 51 - Fuerza bruta en contraseñas
+
+¿Son realmente seguras las contraseñas que generaste? Puedes ponerlas a prueba mediante la fuerza bruta, la cual consiste en tratar de adivinarlas con intentos uno tras otro. Así que deberás escribir un programa que reciba una contraseña y comience a generar cadenas de texto en forma aleatoria hasta hacerla coincidir con tu contraseña. Muestra en la salida cuantos intentos y tiempo le tomó llegar a la misma.
+
+## Dia 52 - Funciones y números binarios ¿Te atreves?
+
+La forma en la que funcionan las computadoras es con números binarios. ¿Puedes crear una función que reciba un número en base decimal y lo regrese en binario? Por ejemplo:
+14 -> 1110
+38 -> 100110
+127 -> 1111111
+Aquí está el twist: no puedes utilizar las librerías de los lenguajes como la función bin en Python.
+
+## Dia 53 - coercion, de 0 a contratado.
+
+Crea una función que reciba un número como un string y lo devuelva como un entero. ¿Qué pasa si el string no representa un número? ¿Puedes hacer que devuelva flotantes también? Por ejemplo:
+
+'12' -> 12
+'45' -> 45
+'3.14159' -> 3.14159
+
+## Dia 54 - Validador de URLs
+
+
+Crea una expresión regular que pueda determinar si un string es una url o no. Por ejemplo:
+
+isUrl(‘[https://www.platzi.com](https://www.platzi.com)’) -> True
+isUrl(‘hello friends’) -> False
+
+## Dia 55 - Validador de Mails
+
+Crea una expresión regular que pueda determinar si un mail es válido o inválido. Por ejemplo:
+
+isValidEmail('name@example.com') -> True
+isValidEmail('name@example@com) -> False
+
+## Dia 56 - Slides
+
+Crea una función que regrese el carácter intermedio de una string. Si es non debe regresar un solo carácter; si es par, debe regresar los dos intermedios. Por ejemplo:
+
+'Platzi' -> 'at'
+'Colombia' -> 'om'
+'Brazo' -> 'a'
+
+## Dia 57 - Hackeando Strings
+
+Crea una función que tome un string y que regrese la versión de H4ck3r Sp34k de la misma. Por ejemplo,
+
+'Linda Tarde' -> 'L1nd4 T4rd3'
+'Me gusta programar' -> 'M3 gu5t4 pr0gr4m4r'
+
+## Dia 58 - Piedra, Papel y tijeras
+
+En un juego de piedra, papel o tijera cada juego se representa por un array de dos strings ([‘pi’, ‘pa’], [‘ti’, ‘pa’], [‘pa’, ‘ti’], etc.). Calcula quien es el ganador de la partida o si empataron. Por ejemplo:
+
+piedraPapelOTijera([['pi', 'ti'], ['pa', 'ti'], ['ti', 'pi'], ['pi', 'pa']] -> 'jugador 2'
+piedraPapelOTijera([['pi', 'ti'], ['pa', 'ti']] -> 'empate'
+piedraPapelOTijera([['pi', 'ti'], ['pi', 'ti'], ['ti', 'pi']] -> 'jugador 1'
+
+## Dia 59 - Escalando nuestro piedra papel o tijera
+
+Escalando nuestro piedra papel o tijera
+Agrega 2 jugadores a tu juego de piedra papel o tijera, cómo lo harías de la forma más eficiente?
+
+## Dia 60 - Real Multiplayer
+
+Mejorando nuestro juego parte 1 y parte 2. Crear un videojuego de piedra papel o tijera que se pueda jugar con N jugadores.
+
+## Dia 61 - Calcula la media
+
+Calcula la media de un conjunto de números
+
+Crea una función que pueda recibir una cantidad de números, ya sea como un arreglo o como parámetros, y calcule la media (promedio) de estos.
