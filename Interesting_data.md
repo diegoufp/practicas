@@ -212,3 +212,19 @@ Arguments: spam eggs
 ## [PEP 8](https://translate.googleusercontent.com/translate_c?depth=1&hl=es&prev=search&pto=aue&rurl=translate.google.com&sl=en&sp=nmt4&u=https://www.python.org/dev/peps/pep-0008/&usg=ALkJrhjVz_jM55YIJpeorj0NyU-VftIbHg "PEP 8") - Guía de estilo para código Python
 
 Una guía de estilo trata sobre la coherencia. La coherencia con esta guía de estilo es importante. La consistencia dentro de un proyecto es más importante. La consistencia dentro de un módulo o función es lo más importante.
+
+## compile()
+
+La función compile(), que no se utiliza con frecuencia, se emplea para compilar el código fuente contenido en una cadena en código objeto. Después, según el caso, el código objeto puede evaluarse con la función eval() o ejecutarse con la función exec().
+
+Una de las aplicaciones posibles de compile() permite que los usuarios puedan introducir código en forma de cadenas en un programa Python que se está ejecutando. Después, esas cadenas pueden compilarla el mismo programa antes de ser ejecutadas o guardadas en un archivo.
+
+Una de las razones por la que la función compile() se utiliza raramente es porque un uso indebido de esta función puede derivar en problemas de seguridad.
+
+## .pop()
+
+Quita un elemento de la lista
+
+## .sort()
+
+ordena la lista 
