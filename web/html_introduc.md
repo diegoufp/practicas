@@ -29,11 +29,11 @@ Cuando es `name="description"` en `content` tenemos que poner euna descripcion d
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Document</title>
+    <title>Document</title> <!-- > Se recomienda menos de 55 caracteres <-->
     <meta charset="UTF-8">
     <meta name="keywords" content="harina,leche,huevos">`
-    <meta name="description" content="descripcion de la pagina">
-    <meta name="author" content="nombre del autor">
+    <meta name="description" content="descripcion de la pagina"> <!-- > Se recomienda menos de 160 caracteres <-->
+    <meta name="author" content="nombre del autor"> 
     <meta name="copyright" content="nombre de la empresa">
     <meta name="robots" content="index">
 </head>
