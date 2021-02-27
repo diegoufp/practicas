@@ -1,9 +1,13 @@
-.texto {
-    margin: auto;
-    margin-top: 50px;
-    width: 320px;
-    height: 350px;
-    border: 4px solid red;
-    background: grey;
-    overflow: auto;
+.caja { 
+    margin: 25px;
+    width: 200px;
+    height: 300px;
+    border: 2px solid red;
+    background-color: pink;
+    cursor: pointer;
+}
+
+.caja:active {
+    cursor: row-resize;
+    color: #000;
 }

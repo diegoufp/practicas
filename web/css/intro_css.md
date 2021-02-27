@@ -831,4 +831,185 @@ Con floar se puede hacer un efecto de que un texto envualva la imagen.Ejemplo:
     margin-right: 18px;
 }
 ```
-3:43
+
+## Object-Fit
+Es una propiedad que se aplica a las imagenes principalmente (para modificar las resolucion y demas).
+
+Los valores de `object-fit` son los siguientes:
+```
+- contain
+- cover
+- none
+- scale-down
+```
+- `contain` es el valor que tiene por defecto, lo que hace es que las resoluciones de imagen se ajusten al contendo posicionandose en el centro..Ejemplo:
+```html 
+<!-- Ejemplo de html -->
+<div class="caja">
+    <img src="https://pbs.twimg.com/profile_images/1062767896269590528/vOsDt9up_400x400.jpg" alt="">
+</div>
+```
+```css
+/* Ejemplo de css */
+.caja {
+    margin: 25px;
+    width: 300px;
+    height: 400px;
+}
+
+.caja img {
+    height: 100%;
+    width: 100%;
+    border: 2px solid red;
+    object-fit: contain;
+}
+```
+
+- `cover` : de esta forma la imagen se ajusta al contenedo y recorta los bordes para ajustarse al espacio del contenedor.Ejemplo:
+```html 
+<!-- Ejemplo de html -->
+<div class="caja">
+    <img src="https://pbs.twimg.com/profile_images/1062767896269590528/vOsDt9up_400x400.jpg" alt="">
+</div>
+```
+```css
+/* Ejemplo de css */
+.caja {
+    margin: 25px;
+    width: 300px;
+    height: 500px;
+}
+
+.caja img {
+    height: 100%;
+    width: 100%;
+    border: 2px solid red;
+    object-fit: cover;
+}
+```
+
+- `none` : Usa las propiedades por defecto(el tama;o real de la imagen sin importarle el contendor), en pocas palabras como quiere el sistema.
+
+- `scale-down`: se queda con la resolucion mas chica, esto lo hace comparando los valores de `none` , `contain` y `cover`.
+
+- Ejemplo de responsing desing:
+Con este ejemplo se muestra como se hacer para que las imagenes se muevan por la pantalla ajustandose a la resolucion de la pagina.
+```html
+<aside class="caja">
+        <div>
+            <img src="https://pbs.twimg.com/profile_images/1062767896269590528/vOsDt9up_400x400.jpg" alt="">
+        </div>
+        <div>
+            <img src="https://pbs.twimg.com/profile_images/1062767896269590528/vOsDt9up_400x400.jpg" alt="">
+        </div>
+        <div>
+            <img src="https://pbs.twimg.com/profile_images/1062767896269590528/vOsDt9up_400x400.jpg" alt="">
+        </div>
+        <div>
+            <img src="https://pbs.twimg.com/profile_images/1062767896269590528/vOsDt9up_400x400.jpg" alt="">
+        </div>
+        <div>
+            <img src="https://pbs.twimg.com/profile_images/1062767896269590528/vOsDt9up_400x400.jpg" alt="">
+        </div>
+        <div>
+            <img src="https://pbs.twimg.com/profile_images/1062767896269590528/vOsDt9up_400x400.jpg" alt="">
+        </div>
+</aside>
+```
+```css
+.caja {
+    display: flex;
+    height: 250px;
+    flex-wrap: wrap;
+}
+
+.caja div {
+    flex: 1;
+    display: flex;
+    margin: 4px;
+    border: 1px solid red;
+    min-width: 180px;
+}
+
+.caja img {
+    object-fit: cover;
+}
+```
+
+## object-position
+con object-position podemos posicionar la imagen dentro de un contenedor.Ejempo:
+```html 
+<!-- Ejemplo de html -->
+<div class="caja">
+    <img src="https://pbs.twimg.com/profile_images/1062767896269590528/vOsDt9up_400x400.jpg" alt="">
+</div>
+```
+```css
+/* Ejemplo de css */
+.caja {
+    margin: 25px;
+    width: 300px;
+    height: 500px;
+}
+
+.caja img {
+    height: 100%;
+    width: 100%;
+    border: 2px solid red;
+    object-fit: cover;
+    object-position: right;
+    /* valores que se pueden usar en object-position
+    left, right, top, bottom, px, em, % */
+}
+```
+
+## cursor
+
+Lo que hace cursor el cambiar el cursor(la flecha del raton en la pantalla) al estar encima de un elemento.Ejemplo:
+```html
+<div class="caja">
+</div>
+```
+```css
+.caja { 
+    margin: 25px;
+    width: 200px;
+    height: 300px;
+    border: 2px solid red;
+    background-color: pink;
+    cursor: pointer;
+}
+```
+Esto lo podemos complementar con una `pseudo-clase` como active, lo que hara es cambiar el cursor cuando este sobre el elemento y cambiara denuevo cuando mantengamos el pulsado el raton.Ejemplo:
+
+```html
+<div class="caja">
+</div>
+```
+```css
+.caja { 
+    margin: 25px;
+    width: 200px;
+    height: 300px;
+    border: 2px solid red;
+    background-color: pink;
+    cursor: pointer;
+}
+
+.caja:active {
+    cursor: row-resize;
+}
+```
+Esta es una lista de los cursores que existen: [cursores](https://www.w3schools.com/cssref/tryit.asp?filename=trycss_cursor "cursores")
+
+## colores 
+
+Se recomienda poner los colores el `hexadecimal`, `rgb`, `rgba`. No se recomienda poner los colores por nombre.
+
+- `hexadecimal` : #000
+- `rgb` : rgb(0,0,0)
+- `rgba` : rgba(0,0,0,.5)
+
+Para buscar los codigos de colores podemos buscar en youtube `html picker color code` o visitar esta pagina de [colores](https://www.w3schools.com/colors/colors_hexadecimal.asp "colores")
+
+4:09
