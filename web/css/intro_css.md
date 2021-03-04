@@ -1013,3 +1013,140 @@ Se recomienda poner los colores el `hexadecimal`, `rgb`, `rgba`. No se recomiend
 Para buscar los codigos de colores podemos buscar en youtube `html picker color code` o visitar esta pagina de [colores](https://www.w3schools.com/colors/colors_hexadecimal.asp "colores")
 
 4:09
+
+## Responsive Desing - Mobile First
+
+## Media queries
+Cuando la resolucion disminuye llega un punto en que el espacio no es suficiente. Responsive Desing suguiere que el dise;o para dispositivos con menor resolucion tiene que ser diferente a de las pantalals de las computadoras que tienen mayor resolucion.Ejemplo:
+```html
+<!-- Ejemplo de html -->
+<div class="caja">
+    <h1>
+        Este es el titulo de la plataforma
+    </h1>
+    <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur fuga id officia distinctio vero deleniti est sit ab corporis exercitationem laborum, itaque perferendis ea nisi perspiciatis, totam earum veritatis magnam?
+    </p>
+</div>
+<div class="caja2">
+    <h2>Este es el titulo de la noticia</h2>
+    <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia possimus ipsam explicabo neque, vitae culpa nemo voluptatem dicta nostrum minus atque vero quos odio enim illo dolores officia, ullam omnis?
+    </p>
+</div>
+```
+```css
+/* Ejemplo de css */
+.caja { 
+    margin: 25px;
+    width: 200px;
+    height: 300px;
+    border: 2px solid red;
+    background-color: pink;
+    cursor: pointer;
+}
+
+div {
+    width: 45%;
+    display: inline-block;
+    padding: 20px;
+    background: #ddd;
+}
+
+h1 {
+    font-size: 24px;
+}
+
+.caja2 {
+    background: #bbb;
+}
+/* esto quiere decir que cuando la pantalla alcance resolcuiones menores de 800px se va aplicar aglo */
+@media only screen and(max-width: 800px) {
+
+div {
+        width: 100%;
+        display: block;
+    }
+}
+```
+Tambien es importante de que el codigo de `html` contenga la etiqueta `<meta name="viewport" content="width=device-width, initial-scale=1.0">`
+    
+## flex box
+flex requiere de dos cosas, un flex conteiner y un flex item.
+
+Si le damos display flex a cualquier elemento, el elemento se comporta como un block, en donde vamos a encontrar los coambios es en los items adentro del contenedor.
+
+por otro lado los flex item solamente son los hijos directos.
+
+flex-box tiene dos ejes:
+```
+cross axis = eje y 
+main axis = eje x
+```
+pero mas que ejes enrelidad son direcciones a las que se les apunta.
+
+Si imaginamos un eje carteciano entonces el lado izquierdo del eje de las 'x' seria el `main-start` y el lado derecho del eje de las 'x' es el `main-end`.
+Por otro lado la parte de arriba del eje de las 'y' seria el `cross-start` y en la parte de abajo del eje de las 'y' seria el `cross-end`.
+
+Lo que hacemos con flexbox es invertir las direcciones del `cross axis` y el `main axis`
+Ejemplo:
+```html
+<!-- Ejemplo de html -->
+<div class="flex-container">
+    <div class="flex-item"></div>
+    <div class="flex-item"></div>
+    <div class="flex-item"></div>
+    <div class="flex-item"></div>
+    <div class="flex-item"></div>
+    <div class="flex-item"></div>
+</div>
+```
+```css
+/* Ejemplo de css */
+.flex-container {
+    display: flex;
+}
+
+.flex-item {
+    background: #248;
+    margin: 5px;
+    height: 120px;
+    width: 120px;
+}
+```
+
+### Propiedades de flex
+
+- `flex-direction` : El flex direction nos permite cambiar la direccion del main axis.Propiedades de `flex-direction`:
+```
+row : valor por defecto, filas(horizontal) de izquierada a derecha.
+
+row-reverse : cambia la direccion del row, de derecha a izquierda.
+
+column : se comportan comop columnas. de arriba hacia abajo.
+
+column-reverse: cambia la direccion de column de abajo hacia arriba.
+```
+
+- `flex-wrap`: permite que cuando el fex container redusca de tama;o y no queremos que los flex-item se reducan tambien entonces `flex-wrap` mandara algunos flex item hacia abajo para que concerven su tama;o.
+Propiedades de `flex-wrap`:
+```
+no-wrap : no pasa nada.
+
+wrap : las cajas se van haci abajo cuando no hay espacio suficiente.
+
+wrap-reverse : las cajas van hacia arriba cuando no hay espacio soficiente.
+```
+
+- `flex-flow`: es `flex-direction` y `flex-wrap` al mismo tiempo.
+
+- `justify-content`: permite acomodar los flex-item. Propiedades de `justify-content`:
+```
+center : hace que se centre el contenido.
+
+space-arround : es como el `margin: auto`, le da un margen automatico a todas las cajas.
+
+space-between : quier que las cajas esten separadas a la misma distancia lo que mas se pueda.
+
+space-evenly : margen especifico para que cada caja este separada a la misma distancia.
+```

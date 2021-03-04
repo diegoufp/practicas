@@ -1,13 +1,12 @@
-.caja { 
-    margin: 25px;
-    width: 200px;
-    height: 300px;
-    border: 2px solid red;
-    background-color: pink;
-    cursor: pointer;
+.flex-container {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
 }
 
-.caja:active {
-    cursor: row-resize;
-    color: #000;
+.flex-item {
+    background: #248;
+    margin: 5px;
+    height: 120px;
+    width: 120px;
 }
