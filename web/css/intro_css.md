@@ -1115,9 +1115,9 @@ Ejemplo:
 }
 ```
 
-### Propiedades de flex
+### Propiedades de flex-content
 
-- `flex-direction` : El flex direction nos permite cambiar la direccion del main axis.Propiedades de `flex-direction`:
+- `flex-direction` : El flex direction nos permite cambiar la direccion del main axis.Propiedades de `flex-direction` :
 ```
 row : valor por defecto, filas(horizontal) de izquierada a derecha.
 
@@ -1128,7 +1128,7 @@ column : se comportan comop columnas. de arriba hacia abajo.
 column-reverse: cambia la direccion de column de abajo hacia arriba.
 ```
 
-- `flex-wrap`: permite que cuando el fex container redusca de tama;o y no queremos que los flex-item se reducan tambien entonces `flex-wrap` mandara algunos flex item hacia abajo para que concerven su tama;o.
+- `flex-wrap` : permite que cuando el fex container redusca de tama;o y no queremos que los flex-item se reducan tambien entonces `flex-wrap` mandara algunos flex item hacia abajo para que concerven su tama;o.
 Propiedades de `flex-wrap`:
 ```
 no-wrap : no pasa nada.
@@ -1138,9 +1138,9 @@ wrap : las cajas se van haci abajo cuando no hay espacio suficiente.
 wrap-reverse : las cajas van hacia arriba cuando no hay espacio soficiente.
 ```
 
-- `flex-flow`: es `flex-direction` y `flex-wrap` al mismo tiempo.
+- `flex-flow` : es `flex-direction` y `flex-wrap` al mismo tiempo.
 
-- `justify-content`: permite acomodar los flex-item. Propiedades de `justify-content`:
+- `justify-content` : permite acomodar los flex-item. Propiedades de `justify-content`:
 ```
 center : hace que se centre el contenido.
 
@@ -1150,3 +1150,70 @@ space-between : quier que las cajas esten separadas a la misma distancia lo que 
 
 space-evenly : margen especifico para que cada caja este separada a la misma distancia.
 ```
+
+- `align-items` : se utiliza solamente cuando hay una linea de items que son `flex-items`. cuando hay mas de una linea puede ocurrir un efecto que no se quiere al posicionar las cajas con un gran espacio. Propiedades:
+```
+flex-start : posiciona la barra hasta arriba verticalmente ( | ). aun que no este definido el heigth no se estira a lo largo del cross axis.
+
+center : centrar verticalmente ( | )
+
+flex-end : posiciona la barra hasta abajo verticalmente ( | )
+
+stretch : es la propiedad por defecto. Si no esta definido el height entonces se estira la caja a todo el cross axis.
+
+baseline : se convina con el la propiedad `flex-wrap` para lograr un efecto similar al 'flex-end' pero al tener menos espacio las cajas  se van para arriba.
+```
+
+- `align-content` : se utilzia cuando hay mas de una lina de items que son `flex-items`.
+```
+flex-start : posiciona la barra hasta arriba verticalmente ( | ). aun que no este definido el heigth no se estira a lo largo del cross axis.
+
+center : centrar verticalmente ( | )
+
+flex-end : posiciona la barra hasta abajo verticalmente ( | )
+
+stretch : es la propiedad por defecto. Si no esta definido el height entonces se estira la caja a todo el cross axis.
+
+baseline : se convina con el la propiedad `flex-wrap` para lograr un efecto similar al 'flex-end' pero al tener menos espacio las cajas  se van para arriba.
+```
+
+### Propiedades de flex-item
+Comportamiento del margin en flex-item:
+```
+Cuando usamos `margin: auto;` se centra en todas las direcciones (tanto vertitalmente como horizontalmente).
+
+si usamos `margin-top: auto` entonces se posiciona hasta abajo. En pocas palabras se posiciona del lado contrario del que se le indica. Eso quiere decir que si ponemos:
+
+`margin-top: auto;`
+`margin-bottom: auto;`
+`margin-left: auto;`
+`margin-right: auto;`
+
+Entonces se lograra el mismo efecto que si solo usamos `margin-top: auto`.
+
+```
+
+Propiedades reservadas de los flex-item:
+
+- `align-self` : posiciona las cagas de manera independiente.
+```
+flex-start : posiciona la caja hasta arriba verticalmente ( | ). aun que no este definido el heigth no se estira a lo largo del cross axis.
+
+center : centrar verticalmente ( | )
+
+flex-end : posiciona la caja hasta abajo verticalmente ( | )
+
+stretch : es la propiedad por defecto. Si no esta definido el height entonces se estira la caja a todo el cross axis.
+
+baseline : se convina con el la propiedad `flex-wrap` para lograr un efecto similar al 'flex-end' pero al tener menos espacio las cajas  se van para arriba.
+```
+
+- `flex-grow` : toma el espacio sobrante y lo reparte entre las cajas que quedan.Las cajas se vuelven las grandes.Lo podemos aplicar tanto indivudual como en grupo.
+
+- `flex-basis` :  es en pocas palabras lo mismo el que `width`, pero a su vez es mas importante que el width. cuando se trabaje con flex se recomienda trabajar con `flex-basis` en lugar de con `width`. 
+
+- `flex-shrink` : es una propiedad que decide cuanta cantidad va a seder. hay 3 cajas y a una le ponemos `flex-shrink: 2` entonces cederea el doble que las otras dos cajas en dado caso de que no alcance el espacio. y por el contrario si tiene un `flex-shrink: .5` entonces cedera la mitad del espacio que las que ceden las otras cajas.
+
+- `flex` : es basicamente agrupar `flex-grow` , `flex-shrink`, `flex-basis`  en una sola funcion( en el orden correspondiente).
+
+- `order` : como el z index, pero en el eje en el que apunta el main axis.si el main axis apunta de izquiera a derecha(valor predeterminado) entonces eso quiere decir que la caja con el `order` mas alto ira al final de la derecha.
