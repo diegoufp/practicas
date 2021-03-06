@@ -169,7 +169,7 @@ Tambien ewxisten otros tributos para las `input` los cuales son los `required`, 
 </html>
 ```
 
-- `<textarea></textarea>` etiqueta que tambien funciona como un `input` pero tambien nos permite tener un campo se puede expandir. Se le puede agregar el atributo `readonly` la cual va a permitir solo leer y no se va a poder modificar.Ejemplo:
+- `<textarea></textarea>` etiqueta que tambien funciona como un `input` pero tambien nos permite tener un campo se puede expandir. Se le puede agregar el atributo `readonly` la cual va a permitir solo leer y no se va a poder modificar.En css le puedes poner `resize: none` para que no se estire la caja.Ejemplo:
 ```html
 <!DOCTYPE html>
 <html lang="en">

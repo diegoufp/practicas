@@ -1217,3 +1217,27 @@ baseline : se convina con el la propiedad `flex-wrap` para lograr un efecto simi
 - `flex` : es basicamente agrupar `flex-grow` , `flex-shrink`, `flex-basis`  en una sola funcion( en el orden correspondiente).
 
 - `order` : como el z index, pero en el eje en el que apunta el main axis.si el main axis apunta de izquiera a derecha(valor predeterminado) entonces eso quiere decir que la caja con el `order` mas alto ira al final de la derecha.
+
+## Grid
+
+gris es un valor de la propiedad `display`.
+
+## conceptos basicos
+
+- `grid container` : cuando le damos grid a una caja se comporta como block pero su estructura interior es la de una regilla(similar a una tabla de excel) completa. Es como un flex container.
+
+- `grid item` : son cada uno de los elementos que estan dentros del `grid container`. Solamente a hijos directos. son diferentes a los `grid cell`.
+
+- `grid cell` : son cada una de las diviciones(celtadas) que se encuentran dentro del `grid container`, son cuadrilateros.
+
+- `grid tracks` : son las `row`(filas (-)) y las `column` (columnas (|)). la operacion para saber cuantos `grid tracks` = `row + column`
+
+- `grid area` : son areas consecutivas que nosotros definimos.(no pueden ser en diagonal)
+
+- `grid line` : son las lineas que sirven para definir las columnas. (column line y row line)
+
+### Propiedades
+
+- `grid-template-rows` : (grid-container)
+
+- `grid-template-columns` : (grid-container)
