@@ -320,3 +320,10 @@ Se inicializa con la etiqueta `<table></table>` y dentro de estas `<tr></tr>` no
     </table>
 </body>
 ```
+
+## dominios
+
+### Analizar dominos
+Analizando un dominio desde [ahrefs](https://ahrefs.com/es/site-explorer "ahrefs") me permitira saber si este dominio tiene enlaces entrantes o si se a utilizado con anterioridad.(se tiene que hacer en el caso de que estes creando un dominio con una palabra comun)
+
+
