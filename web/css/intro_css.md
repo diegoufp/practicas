@@ -117,6 +117,7 @@ sin embargo tambien tiene que tener la propiedad en html para que funcione.Ejemp
 <div>
 ```
 
+- `div:nth-child()` : de esta forma podemos seleccionar un elemento el deseado, siemplemente tenemos que poner el numero del elemento en el lugar entre parentesis.
 
 - `selector::pseudo-elemento { propiedad: valor; }` : **Pseudoelementos** son elementos que no son elmentos. Unos permiten agregar elementos a la etiqueta, permiten añadir estilos a una parte concreta del elemento seleccionado. (Se activa con "::" despues de la etiqueta)). Lista de Pseudoelementos:
 ```
@@ -1236,8 +1237,233 @@ gris es un valor de la propiedad `display`.
 
 - `grid line` : son las lineas que sirven para definir las columnas. (column line y row line)
 
-### Propiedades
+### Propiedades (para usarlos tiene que haber un display: grid)
 
-- `grid-template-rows` : (grid-container)
+- `grid-template-rows` : (grid-container) Cuantas filas queremos que haya. Ejemplo: `grid-template-rows: 150px 150px 150px`. con este comando se crearan 3 filas con un tama;o de 150px.
 
-- `grid-template-columns` : (grid-container)
+- `grid-template-columns` : (grid-container)  Cuantas columnas queremos que haya. Ejemplo: ``. con este comando se crearan 3 columnas con un tama;o de 150px.
+Tambien lo podemos abreviar: Ejemplo:
+```css
+div {
+    /* Estos dos ejemplos ejecutan lo mismo */
+    grid-template-columns: 150px 150px 150px;
+    grid-template-columns: repeat(3, 150px);
+    /* esto tambien es lo mismo */
+    grid-template-columns: 150px 1fr 150px 1fr 150px 1fr;
+    grid-template-columns: repeat(3, 150px 1fr);
+}
+```
+
+
+- `grid-gap` : (grid-container) separa las regillas entre si(es decir que de los bordes no se van a separar) una medida que le des.
+
+- `grid-row-gap` : (grid-container) solamente se separan las filas.
+
+- `grid-row-gap` : (grid-container) solamente se separan las columnas.
+
+- `grid-row-start` : (grid-item) permite que una fila ocupe el espacio de dos filas o mas. Este comando indica la linea de donde va iniciar.
+
+- `grid-row-end` : (grid-item) permite que una fila ocupe el espacio de dos filas o mas. Este comando indica la linea de donde va terminar.
+
+- `grid-column-start` : (grid-item) permite que una columna ocupe el espacio de dos columnas o mas. Este comando indica la linea de donde va iniciar.
+
+- `grid-column-end` : (grid-item) permite que una columna ocupe el espacio de dos columnas o mas. Este comando indica la linea de donde va terminar.
+
+- `grid-row` : (grid-item) permite que una fila ocupe el espacio de dos filas o mas.
+
+- `grid-column` : (grid-item) permite que una columna ocupe el espacio de dos columnas o mas. Ejemplo: `grid-column: 1 / 3`. le estamos diciendo que inicia desde la linea 1 hasta la linea 3, con esto ocupara el espacio de 2 columnas.
+
+#### Unidades "auto" y fr
+
+le `fr` se aplica mejor en las columnas y quiere decir que todo el espacio que sobre dentro de la ventana se le dara a la columna del fr
+
+
+### Grid implicito y explicito
+
+Si definimos un `grid` para que tenga 3 filas y 3 columas entonces podra contener 3 celdas, si creamos una celda mas entonces ya foma parte de el `grid implicito`.
+
+hay propiedades que cuando este grid implicito de crean:
+
+- `grid-auto-rows` : (igual que el template)
+
+- `grid-auto-columns` : (igual que el template)
+
+- `grid-auto-flow` : row(default), column y dense. el grid implicito se comportara como fila de manea predefinida pero tambien podemos hacer que se comporde como columna y esto se cogra con `grid-auto-flow`. El valor `dense` nos permite rellenar los espacion con la celda mas cercana.
+
+# grid dinamico
+El grid dinamico es aquel que tiene columnas, estrucuturas auto ajustables.
+
+hay formas de que el `fr` se ajuste al contenido.
+- `minmax()`  : es una propiedad que nos permite decir cual es el minimo que va a medir algo y cual es lo maximo que va a medir. Usualmente se usa en `repeat()`. Ejemplo: 
+```css
+div {
+    grid-template-columns: repeat(3, minmax(100px, 300px))
+}
+```
+
+- `min-content` : ajusta el tama;o al minimo del contenido, es decir que el minimo del tama;o es el minimo en el que puede reducirse el contenido.Ejemplo:
+```css
+div {
+    grid-template-columns: repeat(3, minmax(min-content, 300px))
+}
+```
+
+- `max-content` : ajusta el tama;o al maximo del contendio, es decir que el minimo del tama;o es el maximo del contenido.
+
+- `auto-fill` : es una cantidad, lo que va hacer es generar la cantidad de (filas o columnas) que pueda con las propiedades indicadas. Ejemplo:
+```css
+div {
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr))
+}
+```
+
+
+- `auto-fit` : es una cantidad, la diferencia con auto-fill es que si no hay mas celdas definidas y aun queda espacio entonces escala las celdas y reparte el espacio sobrante.
+
+### alineacion y control de flujo
+**diferencia con flex**: la alineacion de filas y columnas que se aplica al contenedor(flex container) y la alineacion particular por elemento individual
+
+**propuedades del grid-items**:
+
+- `justify-items` : (horizontalmente) puede tomar valores como: `center` ,`start`, `flex-start`, `end`, `flex-end`. Pero no pueden tener propieades como `space-evenly`, `space-around`, `space-between`.
+
+- `aling-items` : (vericualmente) puede tomar valores como: `center` ,`start`, `flex-start`, `end`, `flex-end`. Pero no pueden tener propieades como `space-evenly`, `space-around`, `space-between`.
+
+**propuedades del grid-items independientes**:
+
+- `aling-self` :  (horizontalmente) puede tomar valores como: `center` ,`start`, `flex-start`, `end`, `flex-end`. Pero no pueden tener propieades como `space-evenly`, `space-around`, `space-between`.
+
+- `justify-self` : (vericualmente) puede tomar valores como: `center` ,`start`, `flex-start`, `end`, `flex-end`. Pero no pueden tener propieades como `space-evenly`, `space-around`, `space-between`.
+
+- `place-self`: es una abreviacion de`aling-self` `justify-self`, en el orden correspondiente.
+
+- `stretch`
+
+- `order` : order funciona igual que en flex, si queremos que se posicione al principio le damos un order mas bajo, si queremos que se posicione al ultimo le damos un orde mas alto.
+Ejemplo:
+```css
+div:first-child {
+    aling-self: center;
+    justify-self: center;
+}
+
+div:nth-child(2) {
+    aling-self: center;
+    justify-self: center;
+}
+
+div:last-child {
+    aling-self: center;
+    justify-self: center;
+}
+```
+**propiedades del grid-content**
+- `justify-content` : (horizontalmente) puede tomar valores como: `center` ,`start`, `flex-start`, `end`, `flex-end`, `space-evenly`, `space-around`, `space-between`.
+
+- `aling-content` : (vericualmente) puede tomar valores como: `center` ,`start`, `flex-start`, `end`, `flex-end`, `space-evenly`, `space-around`, `space-between`.
+
+### grid-area
+las areas son conjuntos de celdas(minimo 2), teoricamente es mejor separar las areas por area consecutiva.
+
+Primero que todo tenemos que definir un `display: grid`
+
+- `grid-template-areas`: lo que se hace es dividir areas como si fueran nombres. Ejemplo:
+```html
+<!-- Ejemplo de html -->
+<div class="grid-container">
+    <div class="grid-item grid-header">Header</div>
+    <div class="grid-item grid-main">Main</div>
+    <div class="grid-item grid-aside">Aside</div>
+    <div class="grid-item grid-footer">Footer</div>
+</div>
+```
+```css
+/* Ejemplo de css */
+.grid-container {
+    background: #444;
+    height: 92vh;
+    border: 5px solid #000;
+    margin: 10px;
+    display: grid;
+    grid-template-areas:
+    "header herader header"
+    "aside main main"
+    "aside main main"
+    "aside main main"
+    "aside main main"
+    "aside main main"
+    "aside main main"
+    "footer footer footer";
+    /*con esto le daremos el tama;o de las filas */
+    grid-template-rows: repeat(auto-fill, 1fr);
+}
+
+.grid-item {
+    padding: 20px;
+}
+
+.grid-footer {
+    background-color: #6f9;
+    grid-area: footer;
+}
+
+.grid-header {
+    background-color: #f96;
+    grid-area: header;
+}
+
+.grid-main {
+    background-color: #96f;
+    grid-area: main;
+}
+
+.grid-aside {
+    background: #888;
+    grid-area: aside;
+}
+```
+
+#### Nombres a las lineas
+podemos ponerle nombre a las lineas
+```css
+/* ejemplo en css */
+.grid-container {
+    background: #444;
+    display: grid;
+    grid-template-rows:
+            [f-line]
+            150px
+            [s-line]
+            150px
+            [t-line]
+            150px
+            [f-line];
+    grid-template-columns: 
+            [linea-izquierda]
+            150px
+            150px
+            150px;
+            [fin-del-main]
+            border: 5px solid #000;
+}
+
+.grid-item {
+    border: 1px solid #000;
+    background: lightgrey;
+}
+
+.grid-item:first-child {
+    background: red;
+    grid-row: f-line/ t-line;
+    grid-column: 1 / 4;
+    /* seria lo mismo decir:
+    grid-colum: linea-izquierda / fin-del-main; */
+}
+```
+
+### Shorthand
+no es muy recomendado, mas que nada por que es ams dificl encontar un error en el codigo.
+
+- `grid-template` : row / columns (grid-container)
+
+- `grid-template` : area unidad
