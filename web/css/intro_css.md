@@ -1542,3 +1542,39 @@ div:hover {
 - `inherit`
 
 ## Animaciones
+A las animaciones necesitan una propiedad llamada `@KeyFrames`. Ejemplo:
+```css
+
+div {
+    /* este es un parametro obligatoria de la animacion */
+    animation-name: desplazarse;
+    animation-timing-function: ;/* es lo mismo que `transition-timing-function` (tiene los mismo valores) */
+    animation-duration: ;/*tiempo que va durar la animacion */
+    animation-iteration-count: ;/* cuantas veces se va a repetir la animacion */
+    animation-direction: ; /*cambiar la direccion en que ocurren las animaciones(0% 50% 100%). Los valores son `normal`, `reverse`(100% 50% 0%), `alternate` (un normal y despues un reverse), `alternate-reverse` */
+    animation-fill-mode: ; /*define cual va a ser el modo final. Los valores son: `none`, `backwards`, `forwards`, `both`(arranca con la propiedad inicial de la aniamcion, en este caso los del 0%*/
+    animation-delay: ; /*el tiempo que va a tardarse en inicial la animacion */ 
+}
+
+/* @keyframes nombre_De_la_animacion */
+@keyframes desplazarse {
+    from {
+        /* aqui van todas las propiedades que tiene la caja cuand comienza */
+    }
+    to {
+        /* aqui van las propiedades de la caja cuando termina */
+    }
+}
+/* hay otra froma de hacerlo */
+@keyframes desplazarse {
+    0% {
+        /* aqui van todas las propiedades que tiene la caja cuand comienza */
+    }
+    50% {
+
+    }
+    100% {
+        /* aqui van las propiedades de la caja cuando termina */
+    }
+}
+``` 
