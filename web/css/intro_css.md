@@ -1,4 +1,5 @@
 # CSS
+Hay una estadistica que menciona que si la pagina no carga en el trancurso de los 4 segundos el 75% de los usuarios la avandonan.
 
 Para referenciar el archivo de estilos de css tenemos que escribir en html `<link rel="stylesheet" href="">` donde `href` es la ruta hacia el archivo de estilo de css.
 
@@ -1467,3 +1468,77 @@ no es muy recomendado, mas que nada por que es ams dificl encontar un error en e
 - `grid-template` : row / columns (grid-container)
 
 - `grid-template` : area unidad
+
+
+## Responsive design (completo)
+Responsive design es una tecnica para adaptar todo el contenido de nuestra pagina web a distintas resoluciones, el objetivo es hacer que se vea bien en todas las resoluciones.
+
+El Responsive design trabaja con estructuras flexibles(contenedores flexibles, imagenes y videos flexibles)
+
+`@Media` :se usa en consultas de medios para palicar diferentes estilos para diferentes tipos / dispositivos de medios. Esto nos ayuda consultar y a validar:
+- ancho y alto de la ventana grafica
+- ancho y alto del dispositivo
+- orientacion (si la tableta/telefono esta en modo horizontal o vertical)
+- resolucion
+
+**Tipos de media queries**:
+- `all` : apto para todos los dispositivos.
+
+- `print` : Destinado a material impreso y virtualizacion de docuementos en una pantalla en el modo de vista previa de impresion.
+
+- `screen` : Destinado a principalmente a las pantallas.
+
+- `speech` : Desrinado a sintetizadores de voz.
+
+**Operadores**
+- `AND`
+- `OR`
+
+**Orientation**
+- `landscape`(paisaje)
+- `portrait`(retarto)
+
+Ejemplo:
+```css
+@media screen and (min-width: 400px) and (max-width: 800px) {
+
+}
+```
+
+## Transition
+Transition es una propiedad que nos permite realizar transiciones dentro de los elementos. transicion se podria definir como el progreso de un cambio. La propiedad abreviada seria `transition` pero existen mas propiedades:
+
+- `transition-property` : transition-property es la propiedad que va a sufir la transicion. Si le damos de valor `all` todas las propiedades van a sufrir una transicion, esto no se recomienda por que consume muchos recursos. Tambien se le puede dar el valor `none`.
+
+- `transition-duration` : es el tiempo en el que va durar la transicion, cuanto va a atardar en mostrarnos como va a cambiar de un valor a otro valor.Ejemplo:
+```css
+div {
+    background: #025;
+    height: 100px;
+    width: 100px;
+    transition-property: background;
+    transition-duration: 1s;
+}
+
+div:hover {
+    background: lightgreen;
+}
+/* con estas dos propiedades que son obligatoria ya podemos ver como un elemento sufre una transicion dentro de un evento hover */
+```
+
+- `transition-delay` : hace que no se muestre el cambio al instante, si no que lo muestra despues, por ejemplo si le damos 3s, va a tardar 3 segundos para iniciar la transicion y tarda 3 segundos mas en que se desctive la transicion.
+
+- `transition-timing-function` : nos dice la curva del tiempo que va tardar en realizar la animacion, es decir, la transicion en funcion del tiempo, como va a ir la asceleracion y desaceleracion en funcion del tiempo. Los valores que tiene son:
+
+- `linear` 
+- `ease` 
+- `ease-in`
+- `ease-out`
+- `ease-in-out`
+- `step-start` 
+- `step-end` 
+- `steps(int, start|end)` 
+- `initial` 
+- `inherit`
+
+## Animaciones
