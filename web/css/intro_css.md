@@ -14,6 +14,8 @@ En css le podermos dar atributos a uno o mas selectores al mismo tiempo.Ejemplo:
 
 ## Selectores
 
+hay muchas formas de trabjar con selectores, buscar en google.
+
 - `*` :  **Selector universal**. ejemplo:
 ```css
 * {
@@ -108,7 +110,10 @@ Hay pseudo-clases que no funcionan en div pero `:hover` si funciona en block e i
 :visited : es para cambiar de color los links visitamos cuando usamos la pseudo-clase `link`.(su nivel de gerarquia esta arriba de las clases y por debajo de un id)
 :active  : Cuando demos click ocurre el efecto indicado(para cambiar de color se usa el `background`)
 :focus   : lo mismo que `active` pero con input.
-:lang   : es una funcion de reconocimiento de lenguaje.Ejemplo: .caja b:lang(en){background: red;}
+:lang   : es una funcion de reconocimiento de lenguaje.
+:valid   :
+Ejemplo: .caja b:lang(en){background: red;}
+
 
 sin embargo tambien tiene que tener la propiedad en html para que funcione.Ejemplo:
 <div class="caja">
@@ -1578,3 +1583,172 @@ div {
     }
 }
 ``` 
+
+## Cubic Bezier
+Es una propiedad para trabajar con animaciones y trancisiones entre otras cosas que es un valor del `animation-timing-function` , `transition-timing-function` y se puede visualizar mas facilmente en el navegador.
+Ejemplo:
+```css 
+div {
+    animation-timing-function: cubic-bezier(0.04, 1.08, 0.76, 1.11)
+    /* coordenadas:  `cubic-bezier(x,x,y,y) */
+}
+```
+Si buscamos en google `css cubic-bezier` podemos entontrar ejemplos de las curvas.
+
+## Transform
+Las transformaciones reciben funciones, lo que hacen es tranformar el elemento de varias formas. Tiene varias formas de transformarlo:
+
+- La primera lo transforma transladandolo de un lado a otro.Es lo mejor para hacer animaciones por que no consume muchso recursos. Ejemplo:
+```css
+div {
+    transform: translate(50px, 60px);
+    /* lo que hace es transladarlo 50px en el eje x y 60px en el eje y */
+    transform: translateX(100%);
+    /* Es una forma de transladarlo en el eje x */
+    /* si lo transladamos 100% lo tranlada el tama;o total del elemento */
+    transform: translateY(100%);
+    /* Es una forma de transladarlo en el eje y */
+}
+```
+
+- Podemos transformalo haciendo que el elemento sea ams grande o mas chico.Ejemplo:
+```css
+div {
+    transform: scale(1);
+    /* scale(1) es el tama;o original del elemento, scale(2) es el doble del tama;o del elemento */
+    transform: scaleX(1);
+    /* hace escala en el eje de las x */
+    transform: scaleY(1);
+    /* hace escala en el eje de las y */
+    /* podemos agregar un `transition: transform 1s` si quieremos darle tiempo de transicion al transform*/
+}
+```
+
+- `skew` es otra forma de deformar el elemento, permite que le podasmos cambiar la forma.Ejemplo:
+```css
+div {
+    transform: skew(10deg);
+    /* `deg` son los grados, tambien le podemos poner `rad` de radianes y `grad` de gradianes.*/
+}
+```
+Si buscamos en google `clip path generator` podemos encontrar una pagina donde te muestra la forma de generar formas.
+
+- podemos royar el elemento.Ejemplo:
+```css
+div {
+    transform: rotate(10deg);
+    /* `deg` son los grados, tambien le podemos poner `rad` de radianes y `grad` de gradianes.*/
+    transform: rotateX(10deg);
+    transform: rotateZ(10deg);
+}
+```
+
+- hay mas funciones de transform que se pueden buscar en google
+
+## Background
+
+- `background-color` : dar un color.
+
+- `background-img: url()` : podemos poner la direccion d ela imagen para que la imagen este de fondo.
+
+- `background-size` : sive para ajustar las imagenes del `background-img`, acepta parametros como `contain`, `cover`, `px`, `%`.
+
+- `background-repeat` : para que no se repita la imagen del `background-img`, los valores que aceptan son `repeat` y `no-repeat`
+
+- `background-clip` : tiene valores como `border-box`, `paddin-box`, `content-box`. `background-clip` lo que hace es recortar la imagen
+
+- `background-origin` : es parecido a `background-clip` pero en lugar de recortarla la crea apartir de donde le indiquemos con los valores: `border-box`, `paddin-box`, `content-box`.
+
+- `background-position` : mescla dos de las siguientes propiedades de manera que tenga sentido:
+`let - top - bottom - right - center ++ left -top - bottom - right - center`.Ejemplo:
+```css
+div {
+    background-position: left top;
+}
+```
+
+- `background-attachmen` : tiene valores como `scroll`, `fixed`(crea un efecto impresionante como si la imagen estuviera de fondo)
+
+## Varibles
+
+Existen las variables globales y las variables globales.
+
+Para definir una variable se poneen `--` dos guiones medios.Ejemplo:
+```css
+:root {
+    --color-rojo: #f40;
+    /* asi se definiria una funcion */
+    /* si se crea una variable en una etiqueta que no sea :root solamente servira para esa etiqueta */
+}
+
+div {
+    background: var(--color-rojo)
+    /* asi se usaria la funcion creada */
+}
+```
+
+## Filter
+filter es una forma de dar filtros, sus propiedades son:
+- `none` : que es la propiedad por defecto.
+
+- `blur` : lo que hace es desenfocarlo, provoca un desenfoque gausiano tanto en x como en y, acepta (px), no acepta (%)
+
+- `brightness` : cuanto brillo va a atener del (0-1)
+
+- `contrast` :  agrega contraste del (0-1), acepta (number or %)
+
+- `drop-shadow` :  nos sirve para darles a las imagenes transparentes un efecto de sobreado, acepta ()
+
+- `grayscale` :  , acepta (%)
+
+- `hue-rotate` :  lo que hace es rotar la gama de colores, acepta (deg)
+
+- `invert` :  lo que hace es invertir los colores, acepta (%)
+
+- `opacity` :  transparencia, acepta (%) y tambien del (0-1)
+
+- `saturate` :  lo que hace es saturar al elemento, hacer que sus colores se concentren para que se vean mas fuertes, acepta (%)
+
+- `sepia` : lo convierte en sepia, es un como en tipo de gris , acepta (%)
+
+- `url` :  para poner filtros de internet
+
+Ejemplo (ejecto gota de agua):
+```css
+/*css*/
+.container {
+    filter: contrast(30);
+    background-color: #fff;
+    /* en contraste no va a funcionar si no le damos un color de fondo */
+}
+
+.caja {
+    display: inline-block;
+    width: 150px;
+    height: 150px;
+    background: red;
+    margin: 40px;
+    border-radius: 50%;
+    filter: blur(20px);
+}
+
+.caja:first-child {
+    animation: trasladar 3s alternate infinite;
+}
+
+@keyframes trasladar {
+    0% {
+        transform: translate(0);
+    }
+}
+```
+
+## Otras propiedades, funciones y selectores curiosos de css:
+
+- `Direction` : tiene valores como `ltr` y `rtl`, `initial` , `inherit`. que basicamente lo que hace es posicionar el contenido de derecha a izquierda o de izquierda a derecha.
+
+- `Letter Spacing` : es para indicar la separacion de las letras.
+
+- `scroll-behavior` : realiza una transicion del scroll de manera suave.
+
+- `user-select` : si le ponemos el valor `none` el usuario no va a poder seleccionar nada.
