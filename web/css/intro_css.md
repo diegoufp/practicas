@@ -304,6 +304,8 @@ Si defines un tipo de letras con medidas definidas cuando trate de adaptar el si
 - `font-weight`:  el grosor de la letra va de 100 a 900.
 
 - `text-aling`: si tiene la propiedad `center` entrara el texto al largo de la caja.
+
+- `text-transform` : sus valores son `none`, `capitalize` vuelve mayuscula las primeras letras de cada palabra para todo el texto, `uppercase` vuelve todo mayusculas, `lowecase` vuelve todo minusculas.
 ### Explortar tipografias
 Para ello visitaremos [Google fonts](https://fonts.google.com/ "Google fonts")
 
