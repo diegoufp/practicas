@@ -61,7 +61,7 @@ Podemos declarar una o mas variables a la vez.Ejemplo:
 Este es un concepto un tanto distinto pero habla basicamente de como funcionan las fases de creacion y de ejecucion. 
 
 **Pruebas con Prompt**
-Se pueden solicitar datos al usuario.Ejemplo:
+Se pueden solicitar datos al usuario.Cuando le damos de datos numeros, ese dato sera en str, pero se puede convertir a entero con `parseInt()`. Ejemplo:
 `let nombre = prompt("dime tu nombre");`
 
 ## Operandores
@@ -164,3 +164,161 @@ Una concidiconal es una centencia, que nos permite es validar algo.
 - `else if (){}`: podemos poner un numero de infinito de conficionales intermedias.
 
 - `else {}`: si nunguna de las anteriores condiciones se cumple se ejecutara else.
+
+## Arreglos o array
+Los array son un tipo de contenedor de diferentes tipos de elementos de diferentes tipos de datos.
+
+Los arrays ya no son un dato primitivo, los arrays ya vienen a ser objetos.
+```js
+let arrays = [];
+```
+Las posiciones en un arrayn se cuentan desde el 0
+```js
+document.write(frutas[0])
+```
+
+## Arrays Asociativos
+Los arrays asociativos se parecen mas al formato `.json` que trabaja con el cambio de informacion.
+
+un array asociativo es como un array que tiene un array asociado. Son como los diccionarios en python.
+
+```js
+let pc1 = {
+    nombre: "Dalato",
+    procesador: "Intel Core I7"
+    ram: "16GB",
+    espacio: "1TB"
+}
+
+/* si tratamos de buscar un dato en el array asociativo "pc1" entonces tendremos que llamar a 'nombre' y no al '0', o nos saldra un error.*/
+document.write(pc1["nombre"])
+
+/* Con esto podriamos hacer algo como esto. */
+
+let nombre = pc1["nombre"];
+let procesador = pc1["procesador"];
+let ram = pc1["ram"];
+let espacio = pc1["espacio"];
+
+frase = `el nombre de mi PC es: <b>${nombre}</b> <br> el procesador es: <b>${procesador}</b> <br> la memoria ram es: <b>${ram}</b> <br> el espacio en disco es de <b>${espacio}<b>`;
+
+document.write(frase);
+```
+
+## Bucles e Iteracion
+
+- `if` : se ejecuta una vez si la condicion se cumple.Ejemplo: `if (numero < 10) {numero++}`.
+
+- `while` : Se ejecuta constantemente hasta que su condicional ya no sea `true`.Ejemplo: `while  (numero < 10) {numero++}`
+
+- `do while:` : con el do while es distinto, primero indico las instrucciones y despues pregunto la condicion. Ejemplo:
+```js
+do {
+    numero++;
+    document.write(numero + "<br>")
+}
+
+while (numero <= 6);
+```
+
+- `break` : el break termina la sentencia .Ejemplo:
+```js
+while(numero < 1000){
+    numero++;
+    document.write(numero);
+    if (numero == 10) {
+        break;
+    }
+}
+```
+
+- `for` : la primera diferencia es que en el `for` podemos declarar variables.Ejemplo:
+```js
+let i = 20;
+
+for (let i = 0; i < 6; i++){}
+/* aqui estamos declarando dos veces 'i',no tira un error por que dentro de 'for' se pueden declarar variables, en este caso 'i' valdra 0 dentro del bloque del codigo del 'for'.
+las partes de un bucle:
+1. declaracion e inicializacion
+2. condicion
+3. iteracion(aumento o decremento)*/
+
+/* tambien existe una forma de declarar una variable por fuera del for e inicializarla dentro del fot*/
+let i;
+for (i = 6; i >= 0; i--){}
+
+/* tambien existe una forma de declarar e inicializar una variable por fuera del for*/
+let i = 6;
+for (i; i >= 0; i--){}
+```
+
+- `continue` :
+podemos saltarnos un numero poniendo un if dentro del for.Ejemplo:
+```js
+for (let i=0; i < 20; i++){
+    if(i == 12) {
+        continue;
+    }
+    document.write(i + "<br>")
+}
+```
+
+- `for in` : nos manda el indice(posicion) en la que estan los elementos.ejemplo:
+```js
+let animales = ["gato", "perro", "tiranosaurio rex"];
+animales.edad = 20;
+
+for (animal in animales){
+    document.write(animal + "<br>");
+}
+/*  0
+    1
+    2
+    edad
+*/ 
+for (animal in animales){
+    document.write(animales[animal] + "<br>");
+}
+/*  gato
+    perro
+    tiranosaurio rex
+*/ 
+```
+
+- `for of` : nos muestra directamente el valor de los elementos.Ejemplo:
+```js
+for (animal of animales){
+    document.write(animal + "<br>");
+}
+/*  gato
+    perro
+    tiranosaurio rex
+*/ 
+```
+
+- `label` : label es una sentencia que nos permite asociar un bucle a un nombre.Ejemplo:
+```js
+array1 = ["maria", "josefa", "roberta"];
+array2 = ["pedro", "marcelo", array1, "josefina"];
+
+forRnacio:
+for (let array in array2){
+    if (array == 2){
+        for (let array of array1){
+           if (array == "maria"){
+            continue forRancio;
+            } 
+            document.write(array + "<br>");
+        }
+    }
+    else {
+        document.write(array2[array]+ "<br>");
+    }
+}
+```
+
+## funciones
+Una funcion es una porcion de codigo que se puede guardar para reutilizarlo, asi ahorramos codigo.Ejemplo:
+```js
+function saludar(){}
+```
