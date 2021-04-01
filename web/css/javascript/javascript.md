@@ -321,4 +321,78 @@ for (let array in array2){
 Una funcion es una porcion de codigo que se puede guardar para reutilizarlo, asi ahorramos codigo.Ejemplo:
 ```js
 function saludar(){}
+
+saludar() /* de esta forma se llama la funcion */
 ```
+
+La segunda forma de crear una funcion es:
+```js
+saludar = function () {
+
+}
+
+saludar()
+```
+
+- `return` : nos sirve para que nos devuelva un valor.Ejemplo:
+```js
+function saludar(){
+    alert("hola");
+    return "la funcion se ejecuto correctamente"
+}
+
+let saludo = saludar();
+
+document.write(saludo)
+```
+
+- `parametros` : las funciones no son funciones sin parametros. Ejemplo:
+```js
+function suma(num1, num2){
+    let res = num1 + num2;
+    document.write(res);
+    document.write("<br>")
+} 
+
+suma(12,32)
+suma(22,55 )
+```
+
+- `funciones flecha` : el `function` se cambia por una fecha.Ejemplo:
+```js
+// asi seria una funcion normal
+const saludar = function(nombre){
+    lat frase = `Hola! ${nombre}! Como estas?`;
+    document.write(frase)
+}
+
+// asi seria la funcion flecha
+const saludar = (nombre)=>{
+    lat frase = `Hola! ${nombre}! Como estas?`;
+    document.write(frase)
+}
+
+// la funcion flecha tambien se puede reducir a:
+const saludar = nombre => document.write(frase);
+// ocurre el return automanticamente
+
+```
+
+## Programacion orientada a objetos (POO)
+cuando trabajamos con programacion orientada a objetos trabajamos con una especie de ideologia, es decir tenemos el mismo paradigma como referencia, todos son objetos. 
+
+Para empezar debemos recordar que los objetos tiene dos conceptos que los definen:
+1- `PROPIEDADES` : EL primer concepto son las cualidades de un objeto, que son las caracteristicas o cualidades, por ejemplo, tiene altura, tiene color, tienen  marca, tiene puertas, tiene velocidad minima o maxima.
+ 
+2- `METODOS` : Luego estan las funcionalidades, todo lo que hace que nuestro objeto tenga funciones particulares, por ejemplo, un auto se puede apagar, puede encender, puede arrancar, etc. 
+
+La programacion orientada a objetos es un paradigma de la programacion que lo que hace es intentar actualizando la forma en la que programamos mejorandola y haciaendo que podamos programar objetos como si lo hicieramos en la vida real.
+
+
+## Conceptos basicos de POO 
+- `clase` : lo que hacen sor crear objetos
+- `objetos` : son la creacion de las clases
+- `atributo` : los las propiedades, las particulaidades, las caracteristicas que tiene el objeto
+- `metodo` : las cosas que puede hacer nuestro objeto.
+- `constructor` : es una particularidad que tienen las clases que son obligatorias. Cuando creamos una clase tenemos que crear un constructor que nos va a construir las propiedades el objeto.
+- `instanciada` : cuando finalizamos todo se podria decri que la clase esta instanciada
