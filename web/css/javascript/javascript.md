@@ -396,3 +396,202 @@ La programacion orientada a objetos es un paradigma de la programacion que lo qu
 - `metodo` : las cosas que puede hacer nuestro objeto.
 - `constructor` : es una particularidad que tienen las clases que son obligatorias. Cuando creamos una clase tenemos que crear un constructor que nos va a construir las propiedades el objeto.
 - `instanciada` : cuando finalizamos todo se podria decri que la clase esta instanciada
+
+Vamos a intentar crear una clase que sea `animal`:
+```js
+class animal {
+    // lo que haremos en el contructor sera pasar los parametros que contendra nuestra clase
+    constructor(especie,edad,color){
+        // 'this' es el objeto que queremos crear
+        // 'this.especie' es diferente al parametros 'especie' por si solo
+        // cuando ponemos 'this.especie', le estamos diciendo que el objeto va a tener cierta caracteristica, una propiedad, un atributo 
+        this.especie = especie;
+        this.edad = edad;
+        this.color = color;
+        this.info = `Soy ${this.especie}, tengo ${this.edad} y soy de color ${this.color}`;
+    }
+}
+// Instanciar la clase
+// el 'new' lo que hace es instanciar un objeto pero va a ser un objeto de la clase (en este caso 'animal').
+// los objetos se tiene que definir con 'const'. 
+// Tengase en cuenta que si la definen con let, en caso de que sin queres mas adelante modifiquen el valor de esa variable, no les va a saltar ningun error y por ende, estaria fallando su programa.
+const perro = new animal("perro", 5, "rojo");
+document.write(perro.info)
+```
+
+**Metodos**
+Los metodos son las acciones que podemos hacer. Los metodo son una funcion dentro de una clase.Ejemplo:
+```js
+class animal{
+    constructor(especie,edad,color){
+        this.especie = especie;
+        this.edad = edad;
+        this.color = color;
+        this.info = `Soy ${this.especie}, tengo ${this.edad} y soy de color ${this.color}`;
+    }
+
+    // esta seria una funcion creada dentro de una clase por lo que se le llama 'Metodo'.
+    // Las funciones fecha no pueden ser usadar dentro de las clases para crear metodos
+    verInfo(){
+        document.write(this.info)
+    }
+}
+
+const perro = new animal("perro", 5, "marron")
+perro.verInfo()
+```
+
+## Caracteristicas de la POO
+
+- `Abstraccion` : Cuando hablamos de abstraccion nos referimos a intentar reducir lo que mas podamos el objeto, hacemos que sea lo menos complejo que podamos. en pocas palabras es simplificar el objeto.
+- `Modularidad` : Es la capacidad de resolver un problema grande separandolo por partes.
+- `Encapsulamiento` : Hacer que todo los datos sean privados, que los usuarios no puedan acceder a ellos facilmente.
+- `Polimorfismo` : Ver como un objeto se comporta de manera distinta ante el mismo metodo solamente por que sus propiedades son dsitintas. Es la capacidad que tiene un objeto para comportance distinto por sus propiedades.
+
+```js
+//Ejemplo de polimorfismo
+class animal{
+    constructor(especie,edad,color){
+        this.especie = especie;
+        this.edad = edad;
+        this.color = color;
+        this.info = `Soy ${this.especie}, tengo ${this.edad} y soy de color ${this.color}`;
+    }
+    verInfo(){
+        document.write(this.info + "<br>")
+    }
+    ladrar(){
+        if (this.especie == "perro") {
+            document.write("Waw! <br>");
+        } else {
+            document.write("No puede ladrar, ya que es un " + this.especie + "<br>")
+        }
+    }
+}
+
+const perro = new animal("perro", 5, "marron")
+const gato = new animal("gato", 2 , "negro")
+const pajaro = new animal("pajaro", 1, "verde")
+
+// Esto es el polimorfismo ya que no todos van a ladrar aun que tengan el mismo metodo, esto es po ruq elos objetos tiene propiedades distintas
+perro.ladrar();
+gato.ladrar();
+pajaro.ladrar();
+```
+
+## Otros conceptos de POO
+Estos conceptos ya vendrian siendo lo que va a tener cambios visuales en el codigo.
+
+- `Herencia` : Crear una clase que va a tomar todo lo que hace la otra clase pero agregandole cosas nuevas.Ejemplo:
+```js
+class Animal{
+    constructor(especie,edad,color){
+        this.especie = especie;
+        this.edad = edad;
+        this.color = color;
+        this.info = `Soy ${this.especie}, tengo ${this.edad} y soy de color ${this.color}`;
+    }
+    verInfo(){
+        document.write(this.info + "<br>")
+    }
+}
+// Esto es la herencia
+/* con 'class perro extends animal' lo que le estamos diciendo es, la clase 'perro' va a contener todo lo que tiene la clase 'animal' pero se le van a agregar algunas cosas en especifico */
+class Perro extends Animal {
+    constructor(especie,edad,color,raza){
+        // lo que esta en 'super' es lo que va a heredar de la clase animal.
+        super(especie,edad,color);
+        this.raza = raza;
+    }
+    ladrar(){
+        alert("WAW!");
+    }
+}
+
+// no podemos tener un objeto con el mismo nombre que una clase.
+const perro = new Perro("perro", 5, "marron", "doberman")
+const gato = new Animal("gato", 2 , "negro")
+const pajaro = new Animal("pajaro", 1, "verde")
+
+perro.verInfo();
+gato.verInfo();
+pajaro.verInfo();
+```
+
+
+- `Metodos esteticos` : Es un metodo que no necesita que la clase se defina para poder ser creado.Ejemplo:
+```js
+class Animal{
+    constructor(especie,edad,color){
+        this.especie = especie;
+        this.edad = edad;
+        this.color = color;
+        this.info = `Soy ${this.especie}, tengo ${this.edad} y soy de color ${this.color}`;
+    }
+    verInfo(){
+        document.write(this.info + "<br>")
+    }
+}
+
+class Perro extends Animal {
+    contructor(especie,edad,color,raza){
+        super(especie,edad,color);
+        this.raza = raza;
+    }
+    // Esto tranquilamente podria ser un metodo estatico, no estoy usando las propiedades y como no estoy usando las propiedades no es necesario crear el objeto.
+    // para crear metodos estaticos hacemos uso de 'static'
+    static ladrar(){
+        alert("WAW!");
+    }
+}
+
+const perro = new Perro("perro", 5, "marron", "doberman")
+const gato = new Animal("gato", 2 , "negro")
+const pajaro = new Animal("pajaro", 1, "verde")
+
+perro.verInfo();
+gato.verInfo();
+pajaro.verInfo();
+```
+
+
+- `Metodos Accesores (Getters, Setters)` : los metodos `Getters` son para obtener un valor, los `Setters` para modificarlo o definirlo.Ejemplo:
+
+```js
+class Animal{
+    contructor(especie,edad,color){
+        this.especie = especie;
+        this.edad = edad;
+        this.color = color;
+        this.info = `Soy ${this.especie}, tengo ${this.edad} y soy de color ${this.color}`;
+    }
+    verInfo(){
+        document.write(this.info + "<br>")
+    }
+}
+
+class Perro extends Animal {
+    constructor(especie,edad,color,raza){
+        super(especie,edad,color);
+        this.raza = null;
+    }
+    // el setter es para para modificarlo o definirlo.
+    // este es un metodo que se convierte a propiedad:
+    set setRaza(newName){
+        this.raza = newName;
+    }
+    // El getter es para obtener informacion.
+    get getRaza(){
+        return this.raza;
+    }
+}
+
+const perro = new Perro("perro", 5, "marron", "doberman")
+const gato = new Animal("gato", 2 , "negro")
+const pajaro = new Animal("pajaro", 1, "verde")
+// Raramente los Getters y Setters funcionan como propiedades. Entonces esta seria la forma erronea de hacerlo:
+// perro.modificarRaza("pedro");
+// la forma correcta seria:
+perro.setRaza = "Pedro";
+document.write(perro.getRaza)
+```
