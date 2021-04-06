@@ -595,3 +595,138 @@ const pajaro = new Animal("pajaro", 1, "verde")
 perro.setRaza = "Pedro";
 document.write(perro.getRaza)
 ```
+
+## Metodos de Cadena
+
+
+- `concat()` : junta dos o mas cadenas y retona una nueva
+```js
+let cadena = "cadena de prueba";
+// lo que ocurre de forma automatica es: let cadena = new String("cadena de prueba");
+resultado = cadena.concat("hola");
+document.write(resultad;o)
+```
+
+- `startsWith()` : Si una cadena comienza con los caracteres de otra cadena, devuelve `true`, sino devuelve `false`. Es estricta y toma en cuenta los espacios.
+- `endsWith()` : Si una cadena termina conm los caracteres de otra cadena, devuelve `true`, sino devuelve `false`.
+- `includes()` : Si una cadena puede encontrarse dentro de otra cadena, devuelve `true`, sino devuelve `false`. Busca las cadenas no importa si estan al inicio o al final.
+- `indexOf()` : Devuelve el indice del primer caracter de la cadena, si no existe, devuelve -1. busca las cadenas no importa la posicion pero en vez de arrojar un `true o false` devuelve la pocision donde inicia la primera letra de la cadena que estamos buscando.
+- `lastIndexOf()` : Devuelve el ultimo indice del primer caracter de la cadena, si no existe, devuelve -1. los mismo que `indexOf()` solo que en vez de devolver la posicion de el primer caracter este devuelve la posicion del primer caracter de la ultima palabra buscada.
+```js
+let cadena = "pedro es un tarado tarado tarado tarado tarado tarado";
+resultado = cadena.lastIndexOf("tarado");
+document.write(resultado);//arroja la posicion 40
+```
+- `padStart()` `[propuesta estandar]`: Rellenar cadena al principio con los caracteres deseados.
+```js
+let cadena = "abc";
+resultado = cadena.padStart(10,"1");
+document.write(resultado); // lo que arrojara sera: 1111111abc
+```
+- `padEnd()` `[propuesta de ECMA]` : Rellenar cadena al final de los caracteres deseados.
+- `repeat()` : Devuelve la misma cadena pero repetida la cantidad
+```js
+let cadena = "abc";
+resultado = cadena.repeat(10);
+document.write(resultado);
+```
+
+- `split()` : Divide la cadena como le pidamos. lo devuelve en un array.
+```js
+let cadena = "Hola,como,estas";
+resultado = cadena.split(",");
+document.write(resultado[0]); //arroja: Hola
+```
+- `substring()` : Nos retona un pedazo de la cena que seleccionamos. lo que hace es crear un nuevo string.
+```js
+let cadena = "ABCDEFG";
+resultado = cadena.substring(0,2);
+documnet.write(resultado); //Arroja: AB
+```
+- `toLowerCase()` : Convierte una cadena a minuscula
+- `toUpperCase()` : Convierte una cadena a mayuscula
+- `toString()` : Metodo devuelve una cadena que representa al objeto especificado. Devuelve una cadena convertida a string.
+```js
+let cadena = ["pedro", "matias"];
+let resultado = cadena.toString();
+document.write(resultado[0]); // arroja: p
+```
+- `trim()` : Elimina los espacios en blanco al principio y al final de una cadena.
+```js
+let cadena = "   pedro   ";
+let resultado = cadena.trim();
+document.write(resultado.length);
+```
+- `trimEnd()` : Elimina los espacios en blanco al final de una cadena.
+- `trimStart()` : Elimina los espacios en blanco al comienzo de una cadena.
+- `valueOf()` : Retorna el valor primitivo de un objeto string.
+
+- `.length` : es una apropiedad de las cadenas de texto el cual te dice cuantas caracteres tiene lo que se esta buscando.
+```js
+let cadena = "   pedro   ";
+let resultado = cadena;
+document.write(resultado.length); //arroja: 11
+```
+
+## Metodos de Arrays
+
+**___TRANSFORMADORES___** : los transformadores modifican al array directamente.
+- `pop()` : elimina el ultimo elemento de un array y lo devuelve.
+```js
+let nombres = ["pedro", "maria" , "jorge"];
+let resultado = nombres.pop();
+document.write(resultado);
+```
+- `shift()` : elimina el primer elemento de un array y lo devuelve.
+- `push()` : agrega un elemento al array al final de la lista.
+```js
+let nombres = ["pedro", "maria" , "jorge"];
+let resultado = nombres.push("juancito", "robet");
+document.write(resultado);
+```
+- `reverse()` : invierte el orden de los elementos de un array.
+- `unshift()` : agrega uno o mas elemneto al inicio del array, y devuelve la nueva longitud del array.
+- `sort()` : ordena los elementos de un arreglo (array) localmente y devuelve el arreglo ordenado.
+- `splice()` : cambia el contenido de un array eliminando elementos existentes y/o agregando nuevos elementos.
+```js
+numero.splice(1,3) // lo primero que ponemos es la posicion(1) y despues indicamos cuantos elementos queremos eliminar(3)
+// y si quisieramos agregar nuevos elementos ponemos:
+numero.splice(1,3,"roberto", "gustavo", "maximo")
+```
+
+**___ACCESORES___** : lo que hace es crear un nuevo array, el original no se modifica.
+- `join()` : une todos los elementos de un matriz (u objeto similar) en una cadena y la devuelve.
+```js
+let numero = ["abecedario", "manzana", "pedro", "dedo", "bobo"]
+documet.write(numero + "<br>")
+let resultado = numeros.join("<br>elemento: ") // es diferente al toString() ya que en este podemos utilizar el separado que querramos
+document.write("elemento: " + resultado);
+```
+- `slice()` : devuelve una parte del array dentro de un nuevo array empezando por inicio hasta fin (fin no incluido).
+```js
+let numero = ["abecedario", "manzana", "pedro", "dedo", "bobo"]
+documet.write(numero + "<br>")
+let resultado = numeros.slice(0,2) // es parecido al substring
+document.write(resultado);
+```
+- Metodos ya vistos en cadenas: `toString()`, `indexOf()` , `lastINdexOf()`, `includes()`.
+
+**___DE REPETICION___**
+- `filter()` : crea un nuevo array con todos los elementos que cumplan la condicion.funciona aprecido a un bucle.
+```js
+let numero = ["abecedario", "manzana", "pedro", "dedo", "bobo"];
+numero.filter(numero => document.write(numero + "<br>")) // iniciara un bucle imprimiendo los elmentos de la cadena uno por uno hasta que se terminen y finalizara le bucle,es como un for en python.
+// tambien funcionaria con :
+numero.filter(function(numero){
+    document.write(numero + "<br>")
+})
+// y la forma mas simple seria:
+numero.filter(numero)
+// en filter tenemos una cualidad que el forEach no tiene
+// podemos devolver los elementos de una cadena que cumplan con una condicion.
+resultado = numeros.filter(numero => numero.length > 5)
+```
+- `forEach()` : ejecuta la funcion indicada una vez por cada elemento del array. es similar a `filter()`.
+- `map()`
+
+## Objetos Math - Basico
