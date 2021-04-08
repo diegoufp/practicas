@@ -730,3 +730,35 @@ resultado = numeros.filter(numero => numero.length > 5)
 - `map()`
 
 ## Objetos Math - Basico
+
+**___METODOS___**
+- `sqrt()` : Devuelve la raiz cuadrada positiva de un numero. `Math.sqrt()`
+- `cbrt()` : Devuelve la raiz cubica de un numero. `Math.cbrt()`
+- `max()` : Devuelve el numero mayor de cero o mas numeros. Trabaja estricatemente con numeros. `Math.max()`
+- `min()` : Devuelve el numero mas peque;o de cero o mas numeros. Trabaja estrictamente con numeros. `Math.min()`
+- `random()` : Devuelve un numero pseudo-aleatorio entre 0 y 1.
+- `round()` : Devuelve el valor de un numero redondeado al numero entrero mas cercano. Podriamos obtener numero aleatorios de 0 al 100 de esta forma:
+```js
+let numero = Math.random()*100;
+numero = Math.round(numero);
+document.write(numero)
+```
+- `fround()` : Devuelve la representacion flotante de precision simple mas cerna de un numero.
+- `floor()` : Devuelve el mayor entero menor que o igual a un numero. Si queremos obtener u  numero random enter 1 y 99 podemos usar:
+```js
+let numero = Math.random()*99;
+numero = Math.floor(numero + 1);
+document.write(numero)
+```
+- `trunc()` : Devuelve la parte entera del numero x, la eliminacion de los digitos fraccionarios. `trunc` no redondea, solamente elimina los decimales.
+
+**___PROPIEDADES___**
+- `PI` : Rtio de la circunferencia de un circulo respecto a su diametro, aproximadamente 3.14159 . `Math.PI`
+- `SQRT1_2` : Raiz cuadrada de 1/2; equivalente, 1 sobre la raiz cuadrada de 2, aproximandamente 0.707 . `Math.SQRT1_2`
+- `SQRT2` : Raiz cuadrada de 2, aproximadamente 1.414 . `Math.SQRT2`
+
+- `E` : Constante de Euler, la abese de los algoritmos naturales, aproximadamente 2.718 . `Math.E`
+- `LN2` : Logaritmo natural de 2, aproximadamente 0.693 . `Math.LN2`
+- `LN10` : Logaritmo natural de 10, aproximadamnete 2.303 . `Math.LN10`
+- `LOG2E` : Logaritmo de E con base 2, aproximadamente 1.443 . `Math.LOG2E`
+- `LOG10E` : Logaritmo de E con base 10, aproximandamente 0.434 . `Math.LOG10E`
