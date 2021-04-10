@@ -762,3 +762,233 @@ document.write(numero)
 - `LN10` : Logaritmo natural de 10, aproximadamnete 2.303 . `Math.LN10`
 - `LOG2E` : Logaritmo de E con base 2, aproximadamente 1.443 . `Math.LOG2E`
 - `LOG10E` : Logaritmo de E con base 10, aproximandamente 0.434 . `Math.LOG10E`
+
+## consola
+La consola es uno de los tantos objetos que podemos encontrar tanto en nuestro navegador como la consola de javascript para tratar de ver y arreglar los errores que existen
+
+**___FUNCIONES DE REGISTRO___**
+- `assert()` : Aparece un mensaje de error en la consola si la afirmacion es falsa. Si la afirmacion es verdadera, no aparecera nada.**(NO ESTANDAR)**
+- `clear()` : limpia la consola.
+- `error()` : Muestra un mensaje de error en la consola web.
+- `info()` : Emite un mensaje informativo a la consola web. En Firefox y Chrome, se muestra un peque;o icono 'i' junto a estos elementos en el registro de la consola web.(es un mensaje informativo)
+- `log()` : Muestra un mensaje en la consola web(o del interprete JavaScript)(es un mensaje de deputacion)
+- `table()` : Esta funcion toma un argumento obligatorio: data, que debe ser un array o un objeto, y un parametro adicional: columns y nos muestra una tabla en consola.
+- `warn()` : Imprime un mensaje de advertencia en la Consola web.
+- `dir()` : Despliega una lista interactiva de las propiedades del objeto JavaScript especificado. **(NO ESTANDAR)**
+
+**___FUNCIONES DE CONTEO___**
+- `count()` : Registra el numero de veces que se llama a `count()`. Esta funcion toma como argumento opcional una etiqueta.
+- `countRest()` : Resetea el contador `console.conunt()`.
+
+**___FUNCIONES DE AGRUPACION___**
+- `group()` : Crea un nuevo grupo en linea en el resgistro de la consola web.
+- `groupEnd()` : Remueve un grupo en linea en el registro de la consola web.
+- `groupCollapsed()` : Crea un grupo en linea pero contraido, el usuario debe expandirlo para verlo.
+
+**___FUNCIONES DE TEMPORIZACION___**
+- `time()` : inicia un temporizador.
+- `timeLog()` : Registra el valor actual de un temporizado.Preguntar cuando tiempo transcurrieo
+- `timeEnd()` : Detiene un temporizador.
+
+## DOM
+El `DOM` es el document object model, es como una interfaz que contiene todo los objetos estandares que nos permiten representar un documento html, xml, xhtml. Es como el documento en si que tiene todo los elementos , los estilos, los atributos.
+
+- `Nodo` : Un nodo en el DOM es cualquier etiqueta del cuerpo, como un parrafo, el mismo body o incluso las etiquedas de una lista. los nodos no siempre son etiquetas, aveces suelen ser otro tipo de elementos. Porque una etiqueta crea un nodo pero no todos los nodos son etiquetas. Tipos de nodo: 
+    - `Document` : el noto document es el nodo raiz, a partir del cual derivan el resto de nodos.
+    - `Element` : nodos definidos por etiquedas html.
+    - `Text` : el texto dentro de un nodo element se considera un nuevo nodo hijo de tipo text(texto).
+    - `Attribute` : Los atributos de las etiquetas definen nodos, (en JavaScript no los veremos como nodos, sino como informacion asociada al nodo de tipo element)
+    - `Comentarios y otros` : Los comentarios y otros elementos como las declaraciones doctype en cabecera de los documentos HTML generan nodos.
+
+## document - Metodos de seleccion de elementos
+Son todos los metodos que nos van a permitir obtener los elementos o los grupos de elementos que querramos seleccionar.
+
+- `document.getElementById()` : Selecciona un elemento por ID. Este es la forma de seleccionar un objeto entero.Ejemplo
+```html
+<!--Codigo de html-->
+<p id="parrafo">Texto de prueba</p>
+
+<script src="codigo.js"></script>
+```
+```js
+// Codigo de js
+parrafo = document.getElementById("parrafo");
+document.write(parrafo)
+```
+- `document.getElementsByTagName` : Selecciona todos los elementos que coincidan con el nombre de la etiqueta especificada. De esta forma seleccionamos una coleccion de elementos.
+```html
+<!--Codigo de html-->
+<p id="parrafo">Texto de prueba</p>
+
+<script src="codigo.js"></script>
+```
+```js
+// Codigo de js
+parrafo = document.getElementsByTagName("p");// no devuelve un array, devuelve una lista con la que podemos acceder con: parrafo[0]
+document.write(parrafo)
+```
+- `document.querySelector()` : Devuelve el primer elemento que concida con el grupo especificado de selectores.
+```html
+<!--Codigo de html-->
+<p class="parrafo">Texto de prueba</p>
+
+<script src="codigo.js"></script>
+```
+```js
+// Codigo de js
+parrafo = document.querySelector(".parrafo")// le ponemos un punto al inicio por que es una clase
+// tambien podriamo seleccionar un id pero el document.getElementById es mas optimo cuando se trata de seleccionar un ID.
+// Este no nos devuelve una lista, nos devuelve un solo elemento
+document.write(parrafo)
+```
+- `document.querySelectorAll()` : Devuelve todos los elementos que coincidan con el grupo especificado de selectores. 
+```html
+<!--Codigo de html-->
+<p class="parrafo">Texto de prueba</p>
+<p class="parrafo">Texto de prueba</p>
+<p class="parrafo">Texto de prueba</p>
+<p class="parrafo">Texto de prueba</p>
+
+<script src="codigo.js"></script>
+```
+```js
+// Codigo de js
+parrafo = document.querySelectorAll(".parrafo")// selecciona todo los elemento que coincidan con lo que estamos buscando
+// devuelve un `NodeList` el cual no es un array es mas una lista de nodos. y podemos acceder al el con parrafo[0]
+document.write(parrafo)
+```
+
+## Metodos para definir, obtener y eliminar atributos.
+
+- `setAttribute()` : Modifica el valor de un atributo.
+```html
+<!--Codigo de html-->
+<input type="range" class="rangoEtario">
+<label>Rango de Edad</label>
+
+<script src="codigo.js"></script>
+```
+```js
+// Codigo de js
+const rangoEtario = document.querySelector(".rangoEtario");
+document.write(rangoEtario)
+// SI queremos que rangoEtario tenga un input de otro valor usamos:
+rangoEtario.setAttribute("type","text") // de esa forma modifico que 'range' a 'text', pero no solo modifica el atributo sino que tambien lo crea
+```
+- `getAttribute()` : Obtiene el valor de un atributo.
+```html
+<!--Codigo de html-->
+<input type="range" class="rangoEtario">
+<label>Rango de Edad</label>
+
+<script src="codigo.js"></script>
+```
+```js
+// Codigo de js
+const rangoEtario = document.querySelector(".rangoEtario");
+
+valorDelAtributo = rangoEtario.getAttribute("type") ;// de esta forma se obtiene el valor del atributo type
+document.write(valorDelAtributo)
+```
+- `removeAttribute()` : Remueve el valor de un atributo.
+```html
+<!--Codigo de html-->
+<input type="range" class="rangoEtario">
+<label>Rango de Edad</label>
+
+<script src="codigo.js"></script>
+```
+```js
+// Codigo de js
+const rangoEtario = document.querySelector(".rangoEtario");
+
+valorDelAtributo = rangoEtario.removeAttribute("type") ;//  remueve el atributo type 
+document.write(valorDelAtributo)
+```
+
+## Atributos globales
+los Atributos globales son los atributos que contienen todos los atributos en comun.
+
+- `class` : lista de clases del elemento separados por espacios
+
+- `contenteditable` : indica si el elemento puede ser modificable por el usuario (bool)
+```html
+<!--Codigo de html-->
+<h1 class="titulo">Este es un Titulo</h1>
+
+<script src="codigo.js"></script>
+```
+```js
+// Codigo de js
+const titulo = document.querySelector(".titulo");
+
+titulo.setAttribute("contentEditable", "true") // con solo esto puedes editar los que esta dentro del h1 directamente desde el navegador
+```
+- `dir` : indica la direccionalidad del texto.
+```html
+<!--Codigo de html-->
+<h1 class="titulo">Este es un Titulo</h1>
+
+<script src="codigo.js"></script>
+```
+```js
+// Codigo de js
+const titulo = document.querySelector(".titulo");
+// 'dir' tiene 3 valores  
+// se recomienda que mejor se haga desde css
+titulo.setAttribute("dir", "ltr") // de izquierda a derecha
+titulo.setAttribute("dir", "rtl") // de derecha a izquierda
+```
+
+- `hidden` : indica si el elemento aun no es, o ya no es, relevante.
+```html
+<!--Codigo de html-->
+<h1 class="titulo">Este es un Titulo</h1>
+
+<script src="codigo.js"></script>
+```
+```js
+// Codigo de js
+const titulo = document.querySelector(".titulo");
+
+titulo.setAttribute("hidden", "true") // el elemento se oculta si le ponemos hidden true
+titulo.setAttribute("hidden", "true") // el elemento se oculta si le ponemos hidden false
+// la unica forma para que se muestre es que eliminemos el atributo hidden
+```
+
+- `id` : define un identificador unico.
+
+- `style` : contiene declaraciones de estilo CSS para ser aplicadas al elemento.
+
+- `tabindex` : indica si el elemento puede obtener un focus de input
+```html
+<!--Codigo de html-->
+<a class="titulo" tabindex="1">Este es un Titulo</a>
+<a class="titulo" tabindex="3">Este es un Titulo</a>
+<a class="titulo" tabindex="2">Este es un Titulo</a>
+
+<script src="codigo.js"></script>
+```
+```js
+// Codigo de js
+const titulo = document.querySelector(".titulo");
+
+titulo.setAttribute("tabindex", "0") 
+```
+
+- `title` : contiene un texto con informacion relacionada al elemento al que pertenece.
+```html
+<!--Codigo de html-->
+<h1 class="titulo" title="titulo normal">Este es un Titulo</h1>
+
+
+<script src="codigo.js"></script>
+```
+```js
+// Codigo de js
+const titulo = document.querySelector(".titulo");
+
+titulo.setAttribute("title", "jajaja") 
+```
+
+## Atributos de Inputs
