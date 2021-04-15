@@ -858,7 +858,7 @@ parrafo = document.querySelectorAll(".parrafo")// selecciona todo los elemento q
 document.write(parrafo)
 ```
 
-## Metodos para definir, obtener y eliminar atributos.
+## element - Metodos para definir, obtener y eliminar atributos.
 
 - `setAttribute()` : Modifica el valor de un atributo.
 ```html
@@ -992,3 +992,150 @@ titulo.setAttribute("title", "jajaja")
 ```
 
 ## Atributos de Inputs
+
+- `className` :
+```html
+<!--Codigo de html-->
+<input type="text" class="input-normal"><br><br>
+
+<script src="codigo.js"></script>
+```
+```js
+// Codigo de js
+const input = document.querySelector(".input-normal")
+// vamo a poder acceder directamente al atributo
+// ya no seria: document.write(input.setAttribute("className"))
+// ahora es:
+document.write(input.className)
+```
+
+- `value` : 
+```html
+<!--Codigo de html-->
+<input type="text" class="input-normal" value="123"><br><br>
+
+<script src="codigo.js"></script>
+```
+```js
+// Codigo de js
+const input = document.querySelector(".input-normal")
+// el 'value' nos dice lo que esta adentro del input en este caso es "123"
+document.write(input.value)
+```
+
+- `type` :
+```html
+<!--Codigo de html-->
+<input type="text" class="input-normal" value="123"><br><br>
+
+<script src="codigo.js"></script>
+```
+```js
+// Codigo de js
+const input = document.querySelector(".input-normal")
+// el 'type' lo podemos modificar directamente
+document.write(input.type = "range")
+```
+- `accept` :
+```html
+<!--Codigo de html-->
+<input type="file" class="input-normal" value="123"><br><br>
+
+<script src="codigo.js"></script>
+```
+```js
+// Codigo de js
+const input = document.querySelector(".input-normal")
+// 'accept' es lo que va aceptar, esto se usa regularmente para los input type="file"
+document.write(input.accept = "image/png")
+// entonces solamente va aceptar las image png
+```
+
+- `form` :
+
+```html
+<!--Codigo de html-->
+<form id="formulario"> 
+    <input type="text" name="">
+    <input type="submit" name="">
+<form>
+<!-- > si usamos un input que esta fuera del form no se va a por usar para el type=text que esta dentro del form:
+<input type="submit" name=""> 
+pero si usamos un form="formulario si se va apoder utilizar para el type=text que esta dentro del form"
+<-->
+    <input type="submit" form="formulario">
+<script src="codigo.js"></script>
+```
+```js
+// Codigo de js
+const input = document.querySelector(".input-normal")
+// 
+document.write(input.form)
+```
+- `minlength` :
+```html
+<!--Codigo de html-->
+<form>
+    <input type="file" class="input-normal"  >
+    <input type="submit">
+</form>
+
+<script src="codigo.js"></script>
+```
+```js
+// Codigo de js
+const input = document.querySelector(".input-normal")
+// 'minlength' es la minima cantidad de caracteres que debe tener un input
+document.write(input.minLength = 4)
+```
+- `placeholder` :
+```html
+<!--Codigo de html-->
+<form>
+    <input type="file" class="input-normal"  >
+    <input type="submit">
+</form>
+
+<script src="codigo.js"></script>
+```
+```js
+// Codigo de js
+const input = document.querySelector(".input-normal")
+// 'placeholder' nos permite dejar un mensaje en el recuadro del input
+document.write(input.placeholder="que pasa mami")
+```
+- `required` :
+```html
+<!--Codigo de html-->
+<form>
+    <input type="file" class="input-normal"  >
+    <input type="submit">
+</form>
+
+<script src="codigo.js"></script>
+```
+```js
+// Codigo de js
+const input = document.querySelector(".input-normal")
+// nos permite decir si es requerido o no(el campo)
+document.write(input.required = "required")
+```
+
+## Attributo style
+Nos permite modificar algo de css del atributo.
+
+```html
+<!--Codigo de html-->
+<h1 class="titulo">Elemento a Modificar</h1>
+
+<script src="codigo.js"></script>
+```
+
+```js
+// Codigo de js
+const titulo = document.querySelector(".titulo")
+
+titulo.style.color = "red"//de esta forma modificamos el color
+titulo.style.backgroundColor = "blue" // en este caso el guion medio '-' se elimina por la letra mayuscula (background-color)
+titulo.style.padding = "30px"
+```
