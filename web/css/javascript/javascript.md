@@ -1139,3 +1139,111 @@ titulo.style.color = "red"//de esta forma modificamos el color
 titulo.style.backgroundColor = "blue" // en este caso el guion medio '-' se elimina por la letra mayuscula (background-color)
 titulo.style.padding = "30px"
 ```
+
+## clases, classList y Metodos de classList
+
+`clasList` es una particularidad de las clases y de los objetos, vamos a poder hacer un monton de cosas con las clases y los objetos.Por ejemplo:
+
+- `add()` : añade una clase
+```html
+<!--Codigo de html-->
+<h1 class="titulo">Elemento a Modificar</h1>
+
+<script src="codigo.js"></script>
+```
+
+```js
+// Codigo de js
+const titulo = document.querySelector(".titulo")
+// el titulo vamos a modificarlo trabajando con classList
+// classList tiene muchos metodos entre ellos esta 'add()' que lo que hace es agregar una clase
+titulo.classList.add("grande")
+// si actualizamos el navegador donde esta la informaicon del html entonces podemos ver:
+// <h1 class="titulo grande">Elemento a Modificar</h1>
+```
+- `remove()` : remueve una clase.
+```html
+<!--Codigo de html-->
+<h1 class="titulo grande">Elemento a Modificar</h1>
+
+<script src="codigo.js"></script>
+```
+
+```js
+// Codigo de js
+const titulo = document.querySelector(".titulo")
+// con 'remove' podemos remover las clases
+titulo.classList.remove("grande")
+// si actualizamos el navegador donde esta la informaicon del html entonces podemos ver:
+// <h1 class="titulo">Elemento a Modificar</h1>
+```
+- `item()` : devuelve la clase del indice especificado.
+```html
+<!--Codigo de html-->
+<h1 class="titulo grande">Elemento a Modificar</h1>
+
+<script src="codigo.js"></script>
+```
+
+```js
+// Codigo de js
+const titulo = document.querySelector(".titulo")
+// 'item()'  devuelve la clase del indice especificado.
+let valor = titulo.classList.item(1)
+document.write(valor) //nos va a mostrar la clase 'grande'
+```
+- `contains()` : verifica si ese elemento posee o no, la clase especificada.
+```html
+<!--Codigo de html-->
+<h1 class="titulo grande">Elemento a Modificar</h1>
+
+<script src="codigo.js"></script>
+```
+
+```js
+// Codigo de js
+const titulo = document.querySelector(".titulo");
+// `contains()`  verifica si ese elemento posee o no, la clase especificada.
+let valor = titulo.classList.contains("grande");
+document.write(valor) //nos va a retornar en este caso 'true'
+// con esto podmeos hacer muchas cosas como enlazarla a un if
+```
+- `replace()` : reemplaza una clase por otra.
+```html
+<!--Codigo de html-->
+<h1 class="titulo grande">Elemento a Modificar</h1>
+
+<script src="codigo.js"></script>
+```
+
+```js
+// Codigo de js
+const titulo = document.querySelector(".titulo");
+//``replace()` reemplaza una clase por otra.
+titulo.classList.replace("grande", "chico");
+```
+- `toggle()` : si no tiene la clase especificada, la agraga, si ya la tiene, la elimina.
+```html
+<!--Codigo de html-->
+<h1 class="titulo grande">Elemento a Modificar</h1>
+
+<script src="codigo.js"></script>
+```
+
+```js
+// Codigo de js
+const titulo = document.querySelector(".titulo");
+//`toggle()`  si no tiene la clase especificada, la agraga, si ya la tiene, la elimina.
+titulo.classList.toggle("grande");
+// tenemos un parametros adicional que es para forzar:
+titulo.classList.toggle("grande", true);// en caso de que la tenga no la va a eliminar, si le damos 'false' la va a sacar siempre.
+// si le ponemos 'false' y no tiene la clase entonces no la agrega
+```
+
+## Obtenecion y Modificacion de Elementos
+- `textContent` : Devuelve el texto de cualquier nodo.
+- `innerText` : Devuelve el texto visible de un node element.
+- `outerText` : Devuelve el texto que de las etiquetas html incluidas las etiquetas.
+
+- `innerHTML` : Devuelve el contenido html de un elemento.
+- `outerHTML` : Devuelve el codigo HTML completo del elemento.
