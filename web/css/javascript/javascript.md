@@ -1242,8 +1242,190 @@ titulo.classList.toggle("grande", true);// en caso de que la tenga no la va a el
 
 ## Obtenecion y Modificacion de Elementos
 - `textContent` : Devuelve el texto de cualquier nodo.
+```html
+<!--Codigo de html-->
+<h1 class="titulo">Elemento a Modificar</h1>
+
+<script src="codigo.js"></script>
+```
+
+```js
+// Codigo de js
+const titulo = document.querySelector(".titulo");
+
+let resultado = titulo.textContent;
+document.write(resultado) // con esto nos devuelve el elemento que tenemos en la etiqueta
+// el html no lo devuelve solo lo que se puede ver con el html
+// aun que le pongamos // style = "visibility: hidden;" // lo va a mostrar
+```
+
 - `innerText` : Devuelve el texto visible de un node element.
+```html
+<!--Codigo de html-->
+<h1 class="titulo">Elemento a <b>Modificar</b></h1>
+<!-- <h1 class="titulo">Elemento a <b style = "visibility: hidden;" >Modificar</b></h1>  -->
+
+<script src="codigo.js"></script>
+```
+
+```js
+// Codigo de js
+const titulo = document.querySelector(".titulo");
+
+let resultado = titulo.innerText;
+document.write(resultado)  // con esto nos devuelve el elemento que tenemos en la etiqueta
+// el html no lo devuelve solo lo que se puede ver con el html
+// si le ponemos:
+// style = "visibility: hidden;"
+// entonces va ocultar la infromacion de la etiqueta b en este caso
+// ya casi no se usa
+// en el alert no lo muestra
+```
+
 - `outerText` : Devuelve el texto que de las etiquetas html incluidas las etiquetas.
+```html
+<!--Codigo de html-->
+<h1 class="titulo">Elemento a Modificar</h1>
+
+<script src="codigo.js"></script>
+```
+```js
+// Codigo de js
+const titulo = document.querySelector(".titulo");
+
+let resultado = titulo.outerText;
+document.write(resultado) // con esto nos devuelve el elemento que tenemos en la etiqueta
+// el html no lo devuelve solo lo que se puede ver con el html
+// no se usa mas en el standard
+```
 
 - `innerHTML` : Devuelve el contenido html de un elemento.
+```html
+<!--Codigo de html-->
+<h1 class="titulo">Elemento a <b>Modificar</b></h1>
+<!-- <h1 class="titulo">Elemento a <b style = "visibility: hidden;" >Modificar</b></h1>  -->
+
+<script src="codigo.js"></script>
+```
+
+```js
+// Codigo de js
+const titulo = document.querySelector(".titulo");
+
+let resultado = titulo.innerHTML;
+document.write(resultado)  // con esto nos devuelve el elemento que tenemos en la etiqueta
+// el html no lo devuelve solo lo que se puede ver con el html
+// si le ponemos:
+// style = "visibility: hidden;"
+// entonces va ocultar la infromacion de la etiqueta b en este caso
+// en un alert aparecera como:
+// Elemento a <b style = "visibility: hidden;" >Modificar</b>
+```
+
 - `outerHTML` : Devuelve el codigo HTML completo del elemento.
+```html
+<!--Codigo de html-->
+<h1 class="titulo">Elemento a <b>Modificar</b></h1>
+<!-- <h1 class="titulo">Elemento a <b style = "visibility: hidden;" >Modificar</b></h1>  -->
+
+<script src="codigo.js"></script>
+```
+
+```js
+// Codigo de js
+const titulo = document.querySelector(".titulo");
+
+let resultado = titulo.outerHTML;
+document.write(resultado)  // con esto nos devuelve el elemento que tenemos en la etiqueta
+// el html no lo devuelve solo lo que se puede ver con el html
+// si le ponemos:
+// style = "visibility: hidden;"
+// entonces va ocultar la infromacion de la etiqueta b en este caso
+// en el alert muestra:
+// <h1 class="titulo">Elemento a <b style = "visibility: hidden;" >Modificar</b></h1>
+```
+
+## Creacion de Elementos
+Esto se creo para solucionar un problema de usos de recursos en exceso.
+
+- `createElements()` :  crea un elemento 
+```html
+<!--Codigo de html-->
+<div class="contenedor"></div>
+
+<script src="codigo.js"></script>
+```
+
+```js
+// Codigo de js
+const contenedor = document.querySelector(".contenedor");
+
+const item = document.createElement("LI"); // createElement solo reconoce mayusculas
+document.write(item)
+```
+
+- `createTextNode()` : crea un texto dentro del item
+```html
+<!--Codigo de html-->
+<div class="contenedor"></div>
+
+<script src="codigo.js"></script>
+```
+
+```js
+// Codigo de js
+const contenedor = document.querySelector(".contenedor");
+
+const item = document.createElement("LI"); // createElement solo reconoce mayusculas
+const textoDelItem = document.createTextNode("Este es un item de la lista");
+item.innerHTML = textDElItem;
+console.log
+```
+
+- `appendChild()`  : cuando modificamos a una etiqueta que esta dentro de otros decirmos que estamos modificando a un 'child'(un hijo). Es un metodo que se aplica al padre pero toma como parametro al hijo.
+```html
+<!--Codigo de html-->
+<div class="contenedor"></div>
+
+<script src="codigo.js"></script>
+```
+
+```js
+// Codigo de js
+const contenedor = document.querySelector(".contenedor");
+
+const item = document.createElement("LI"); // createElement solo reconoce mayusculas
+const textoDelItem = document.createTextNode("Este es un item de la lista");
+item.appendChild(textDelItem);
+console.log(item);
+// en la consola se estaria comtrando como:
+// <li>Este es un item de la lista</li>
+// tambien este lemento lo podemos poner dentro de otro contenedor
+contenedor.appendChild(item);
+```
+
+- `createDocumentFragment()` : de esta forma evistamos el uso excesivo de recusos al crear elementos
+```html
+<!--Codigo de html-->
+<div class="contenedor"></div>
+
+<script src="codigo.js"></script>
+```
+
+```js
+// Codigo de js
+const contenedor = document.querySelector(".contenedor");
+
+const item = document.createElement("LI"); // createElement solo reconoce mayusculas
+const fragmento = document.createDocumentFragment();
+
+for (i = 0; i < 20; i++){
+    const item = document.createElement("LI");
+    item.innerHTML = "Este es un item de la lista";
+    fragmento.appendChild(item);
+}
+
+contenedor.appendChild(fragmento);
+```
+
+## Obtencion y modificacion de childs(hijos)
