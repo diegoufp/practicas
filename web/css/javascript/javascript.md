@@ -1429,3 +1429,150 @@ contenedor.appendChild(fragmento);
 ```
 
 ## Obtencion y modificacion de childs(hijos)
+
+- `firstChild` : Lo que hace es obtener el primer hijo
+```html
+<!--Codigo de html-->
+
+<!--En este caso el contenedor padre es el div y los hijos son el h2, h4, p-->
+<div class="contenedor">
+    <h2>Un h2 comun</h2>
+    <h4>Un h4 comun</h4>
+    <p>Un simple parrafo</p>
+</div>
+
+<script src="codigo.js"></script>
+```
+
+```js
+// Codigo de js
+const contenedor = document.querySelector(".contenedor");
+
+const primerHijo = contenedor.firstChild;
+console.log(primerHijo) // si dejamos un espacio ente el div y el h2 entonces nos aparecera en la consola como:
+// #text
+// pero si borramos ese espacio, entonces en la consola va aparecer:
+// <h2>Un h2 comun</h2>
+```
+- `lastChild` : Lo que hace es obtener el ultimo hijo
+```html
+<!--Codigo de html-->
+
+<!--En este caso el contenedor padre es el div y los hijos son el h2, h4, p-->
+<div class="contenedor">
+    <h2>Un h2 comun</h2>
+    <h4>Un h4 comun</h4>
+    <p>Un simple parrafo</p>
+</div>
+
+<script src="codigo.js"></script>
+```
+
+```js
+// Codigo de js
+const contenedor = document.querySelector(".contenedor");
+
+const primerHijo = contenedor.lastChild;
+console.log(primerHijo) // si dejamos un espacio ente el /div y el p entonces nos aparecera en la consola como:
+// #text
+// pero si borramos ese espacio, entonces en la consola va aparecer:
+// <p>Un simple parrafo</p>
+```
+- `firstElementChild` : Nos permite obtener el primer elemento hijo y asi no tendremos que preocuparnos por los espacios.
+```html
+<!--Codigo de html-->
+
+<!--En este caso el contenedor padre es el div y los hijos son el h2, h4, p-->
+<div class="contenedor">
+    <h2>Un h2 comun</h2>
+    <h4>Un h4 comun</h4>
+    <p>Un simple parrafo</p>
+</div>
+
+<script src="codigo.js"></script>
+```
+
+```js
+// Codigo de js
+const contenedor = document.querySelector(".contenedor");
+
+const primerHijo = contenedor.firstElementChild;
+console.log(primerHijo)
+// entonces en la consola aparecera:
+// <h2>Un h2 comun</h2>
+```
+- `lastElementChild` :
+```html
+<!--Codigo de html-->
+
+<!--En este caso el contenedor padre es el div y los hijos son el h2, h4, p-->
+<div class="contenedor">
+    <h2>Un h2 comun</h2>
+    <h4>Un h4 comun</h4>
+    <p>Un simple parrafo</p>
+</div>
+
+<script src="codigo.js"></script>
+```
+
+```js
+// Codigo de js
+const contenedor = document.querySelector(".contenedor");
+
+const primerHijo = contenedor.lastElementChild;
+console.log(primerHijo)
+// entonces en la consola aparecera:
+// <p>Un simple parrafo</p>
+```
+- `childNodes` : nos devuelve todos los nodos hijo
+```html
+<!--Codigo de html-->
+
+<!--En este caso el contenedor padre es el div y los hijos son el h2, h4, p-->
+<div class="contenedor">
+    <h2>Un h2 comun</h2>
+    <h4>Un h4 comun</h4>
+    <p>Un simple parrafo</p>
+</div>
+
+<script src="codigo.js"></script>
+```
+
+```js
+// Codigo de js
+const contenedor = document.querySelector(".contenedor");
+
+const primerHijo = contenedor.childNodes;
+console.log(primerHijo);
+// NodeList(7) [text,h2,text,h4,text,p,text]
+// no es un array es un node list
+// para recorrer el node list podriamos hacerlo con:
+// hijo.forEach(hijo => console.log(hijo));
+```
+
+- `children` : nos devuelve los elementos hijos
+```html
+<!--Codigo de html-->
+
+<!--En este caso el contenedor padre es el div y los hijos son el h2, h4, p-->
+<div class="contenedor">
+    <h2>Un h2 comun</h2>
+    <h4>Un h4 comun</h4>
+    <p>Un simple parrafo</p>
+</div>
+
+<script src="codigo.js"></script>
+```
+
+```js
+// Codigo de js
+const contenedor = document.querySelector(".contenedor");
+
+const primerHijo = contenedor.children;
+console.log(primerHijo);
+// HTMLCollection(3) [h2,h4,p]
+// solo devuelve las etiquetas html
+// no es un array es un HTMLCollection
+// para recorrer el HTMLCollection podriamos hacerlo con:
+// for (hijo in hijos){console.log(hijo)}
+```
