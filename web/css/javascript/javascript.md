@@ -1574,5 +1574,256 @@ console.log(primerHijo);
 // solo devuelve las etiquetas html
 // no es un array es un HTMLCollection
 // para recorrer el HTMLCollection podriamos hacerlo con:
-// for (hijo in hijos){console.log(hijo)}
+// for (hijo of hijos){console.log(hijo)}
 ```
+
+## Metodos de Childs (Hijos)
+- `replaceChild()` : remplaza
+```html
+<!--Codigo de html-->
+
+<!--En este caso el contenedor padre es el div y los hijos son el h2, h4, p-->
+<div class="contenedor">
+    <h2 class="h2">Un h2 comun</h2>
+    <h4>Un h4 comun</h4>
+    <p>Un simple parrafo</p>
+</div>
+
+<script src="codigo.js"></script>
+```
+
+```js
+// Codigo de js
+const contenedor = document.querySelector(".contenedor");
+
+const parrafo = document.createElement("P").innerHTML = "Parrafo";
+const h2_nuevo = document.createElement("H2");
+h2_nuevo.innetHTML = "Titulo";
+
+h2_antiguo = document.querySelector(".h2");
+
+contenedor.replaceChild(h2_nuevo, h2_antiguo)
+```
+- `removeChild()` : con este metodo podemos eliminar un elemento de un contenedor.
+```html
+<!--Codigo de html-->
+
+<!--En este caso el contenedor padre es el div y los hijos son el h2, h4, p-->
+<div class="contenedor">
+    <h2 class="h2">Un h2 comun</h2>
+    <h4>Un h4 comun</h4>
+    <p>Un simple parrafo</p>
+</div>
+
+<script src="codigo.js"></script>
+```
+
+```js
+// Codigo de js
+const contenedor = document.querySelector(".contenedor");
+
+const parrafo = document.createElement("P").innerHTML = "Parrafo";
+const h2_nuevo = document.createElement("H2");
+h2_nuevo.innetHTML = "Titulo";
+
+h2_antiguo = document.querySelector(".h2");
+
+contenedor.removeChild(h2_antiguo)
+```
+
+- `hasChildNodes()` : para verificar si tiene un elemento hijo o no.
+```html
+<!--Codigo de html-->
+
+<!--En este caso el contenedor padre es el div y los hijos son el h2, h4, p-->
+<div class="contenedor">
+    <h2 class="h2">Un h2 comun</h2>
+    <h4>Un h4 comun</h4>
+    <p>Un simple parrafo</p>
+</div>
+
+<script src="codigo.js"></script>
+```
+
+```js
+// Codigo de js
+const contenedor = document.querySelector(".contenedor");
+
+const parrafo = document.createElement("P").innerHTML = "Parrafo";
+const h2_nuevo = document.createElement("H2");
+h2_nuevo.innetHTML = "Titulo";
+
+h2_antiguo = document.querySelector(".h2");
+
+let respuesta = contenedor.hasChildNodes();
+// si le preguntamos :
+// let respuesta = h2_antiguo.hasChildNodes();
+// entonces nos va a decir que el contenedor no tiene hijos
+if (respuesta) {
+    document.write("El elemento tiene hijos");
+} else {
+    document.write("El elemento No tien hijos")// tiene que estar completamente vacio la etiqueta para que diga que no tenga hijos, si hay un texto va a amarcar como que si tiene hijos
+}
+```
+
+## Propiedades de parents (Padres)
+- `parentElement` : selecciona el padre elemento de un elemento.
+```html
+<!--Codigo de html-->
+
+<!--En este caso el contenedor padre es el div y los hijos son el h2, h4, p-->
+<div class="contenedor">
+    <h2 class="h2">Un h2 comun</h2>
+    <h4>Un h4 comun</h4>
+    <p>Un simple parrafo</p>
+</div>
+
+<script src="codigo.js"></script>
+```
+```js
+// Codigo de js
+const contenedor = document.querySelector(".contenedor");
+
+const parrafo = document.createElement("P").innerHTML = "Parrafo";
+const h2_nuevo = document.createElement("H2");
+h2_nuevo.innetHTML = "Titulo";
+
+h2_antiguo = document.querySelector(".h2");
+
+console.log(h2_antiguo.parentElement)
+```
+- `parentNode` : selecciona el padre de un elemento, solo en caso de que el padre no sea una etiqueta HTML
+```html
+<!--Codigo de html-->
+
+<!--En este caso el contenedor padre es el div y los hijos son el h2, h4, p-->
+<div class="contenedor">
+    <h2 class="h2">Un h2 comun</h2>
+    <h4>Un h4 comun</h4>
+    <p>Un simple parrafo</p>
+</div>
+
+<script src="codigo.js"></script>
+```
+```js
+// Codigo de js
+const contenedor = document.querySelector(".contenedor");
+
+const parrafo = document.createElement("P").innerHTML = "Parrafo";
+const h2_nuevo = document.createElement("H2");
+h2_nuevo.innetHTML = "Titulo";
+
+h2_antiguo = document.querySelector(".h2");
+
+console.log(h2_antiguo.parentNode
+)
+```
+
+## Propiedades de Siblings (Hermanos)
+los elemenos hermanos son los que estan en la misma linea de rango
+- `nextSibling` :
+```html
+<!--Codigo de html-->
+
+<!--En este caso el contenedor padre es el div y los hijos son el h2, h4, p-->
+<div class="contenedor">
+    <h2 class="h2">Un h2 comun</h2>
+    <h4>Un h4 comun</h4>
+    <p>Un simple parrafo</p>
+</div>
+
+<script src="codigo.js"></script>
+```
+```js
+// Codigo de js
+const contenedor = document.querySelector(".contenedor");
+
+const parrafo = document.createElement("P").innerHTML = "Parrafo";
+const h2_nuevo = document.createElement("H2");
+h2_nuevo.innetHTML = "Titulo";
+
+h2_antiguo = document.querySelector(".h2");
+
+console.log(h2_antiguo.nextSibling)// nos arrojaria un elemento txt por quue entre el h2 y el h4 hay text
+// si quisieramos seleccionar el ultimo hermano lo hariamos con:
+// h2_antiguo.previousSibling
+
+```
+- `previousSibling` :
+- `nextElementSibling` :
+```html
+<!--Codigo de html-->
+
+<!--En este caso el contenedor padre es el div y los hijos son el h2, h4, p-->
+<div class="contenedor">
+    <h4>Un h4 comun</h4>
+    <h2 class="h2">Un h2 comun</h2>
+    <p>Un simple parrafo</p>
+</div>
+
+<script src="codigo.js"></script>
+```
+```js
+// Codigo de js
+const contenedor = document.querySelector(".contenedor");
+
+const parrafo = document.createElement("P").innerHTML = "Parrafo";
+const h2_nuevo = document.createElement("H2");
+h2_nuevo.innetHTML = "Titulo";
+
+h2_antiguo = document.querySelector(".h2");
+
+console.log(h2_antiguo.nextElementSibling) // en este caso nos mostrara el elemento siguiente que es el:
+// <p>Un simple parrafo</p>
+```
+- `previousElementSibling` : 
+```html
+<!--Codigo de html-->
+
+<!--En este caso el contenedor padre es el div y los hijos son el h2, h4, p-->
+<div class="contenedor">
+    <h4>Un h4 comun</h4>
+    <h2 class="h2">Un h2 comun</h2>
+    <p>Un simple parrafo</p>
+</div>
+
+<script src="codigo.js"></script>
+```
+```js
+// Codigo de js
+const contenedor = document.querySelector(".contenedor");
+
+const parrafo = document.createElement("P").innerHTML = "Parrafo";
+const h2_nuevo = document.createElement("H2");
+h2_nuevo.innetHTML = "Titulo";
+
+h2_antiguo = document.querySelector(".h2");
+
+console.log(h2_antiguo.previousElementSibling) // en este caso nos mostrara el elemento siguiente que es el:
+// <p>Un simple parrafo</p>
+```
+
+## Nodos - Extras
+- `closest()` : seleccionar el elemento ascendente mas cercano que coincida con nuestro selector.
+```html
+<!--Codigo de html-->
+
+<!--En este caso el contenedor padre es el div y los hijos son el h2, h4, p-->
+<div class="div">
+    DIV 1
+        <div class="div-3"></div>
+    <div class="div">
+    DIV 2
+    </div>
+</div>
+
+<script src="codigo.js"></script>
+```
+```js
+// Codigo de js
+const div = document.querySelector(".div-3");
+
+console.log(div.closest(".div")) // nos retornaria el div 1 por que nos retorna el elemento ascendente mas cercano
+// busca el conenedor padre mas cercano 
+```
+
