@@ -102,6 +102,8 @@ Cuando es `name="description"` en `content` tenemos que poner euna descripcion d
 
 - `<img src="" alt="">` : Esta etiqueta es para mostrar imagenes. No es necesario que se cierre la etiqueta. EL atributo `alt` nos va a ayudar para el ceo y en caso de que la imagen no se pueda buscar se va a escribir lo que ponemos en el `alt`. Tambien podemos poner ede atributo `title` que nos permite poner titulo a la imagen.
 
+    - `<img loading="lazy">`: para mejorar la velocidad de l apagina web.
+
 - `<video src=""></video>` : Esta etiqueta es para moestrar un video. Esta etiqueta ademas puede contener un atributo llamda `controls` que cuando lo dejamos vacio le estamos diciendo al navegador que ponga un control predeterminado para manejar el video. Ejemplo:
 ```html
 <!DOCTYPE html>
