@@ -161,3 +161,55 @@ arrayElement.forEach(item => {
 
 // este es un problema que se genera con los dos opciones
 ```
+
+## Fragment
+fragment vino a solucionar algo que conocemos como reflow. Fragment es una version ligera del Document que almacena un segmento de una estructura de document compuesta de nodos como un documento estandar. 
+Por ende en un fragment vamos a guardar todo un template o nodos HTML que luego pintaremos en nuestro DOM, asi evitamos en mayor parte el Reflow.
+```html
+<!-- codigo html -->
+<body>
+    <h1>Hola al DOM</h1>
+    <ul id="lista">
+        <!-- Nosotros a traves de javascript insetaremos los 'li' -->
+    <ul>
+</body>
+```
+```js
+// Codigo js
+const lista = document.getElementById('lista');
+console.log(lista);
+
+const li = createElement('li');
+const arrayElement = ['primer elemento', 'segundo', 'tercero'];
+
+const fragment = document.createDocumentFragment(); //este fragmento nos permitira guardar la estrucutra antes de ser incorporada a nuestro html
+// otra opcion valida seria:
+// const fragment = new DocumentFragment()
+arrayItem.forEach(item => {
+    const li = document.createElement('li');
+    li.textContent = item;
+    fragment.appendChild(li); 
+});
+//con esto el fragment a sido creado, ahora solo falta empujarlo
+// esto es lo importante ya que una vez que finalice nuestro ciclo forEach nostros hacemos un appendCHild del fragment
+lista.appendChild(fragment);
+```
+para insertar la lista al revez:
+```js
+const lista = document.getElementById('lista');
+console.log(lista);
+
+const li = createElement('li');
+const arrayElement = ['primer elemento', 'segundo', 'tercero'];
+
+const fragment = document.createDocumentFragment(); 
+arrayItem.forEach(item => {
+    const li = document.createElement('li');
+    li.textContent = item;
+    const childNode = fragment.firstChild;
+    console.log(item, childNode);
+
+    fragment.insertBefore(li, childNode);
+});
+lista.appendCHild(fragment);
+```
