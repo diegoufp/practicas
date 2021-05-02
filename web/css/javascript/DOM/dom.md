@@ -213,3 +213,171 @@ arrayItem.forEach(item => {
 });
 lista.appendCHild(fragment);
 ```
+
+## Templete HTML
+Supongamos que necesitamos incorporar de forma dinamica este elemento:
+```html
+<ul id="lista">
+    <!--<li class="list">
+        <b>Nombre: </b> <span class="text-danger">descripcion...</span>
+    </li> -->
+</ul>
+```
+```js
+const lista = document.querySelector('#lista');
+
+const arrayLista = ['item 1', 'item 2', 'item 3'];
+
+const fragment = document.createDocumentFragment();
+arrayLista.forEach(item => {
+    const li = document.createElement('li');
+    li.classList.add('li');
+    const b = document.createElement('b');
+    b.textContent = 'Nombre: ';
+    li.appendChild(b);
+    const span = document.createELement('span');
+    span.classList.add('text-danger');
+    span.textContent = item;
+    li.appendChild(b);
+    li.appendChild(span);
+    fragment.appendChild(li)
+});
+lista.appendChild(fragment);
+```
+si tratamos de resolver este problema con `createElement` entonces tendremos un condigo muy extenso, para ello existe una solucion.
+
+- Podria ser tentador utilizar `innerHTML` pero el innerHTML no acepta el `fragment` por lo tanto no podrimaos utilizarlo.
+
+```html
+<ul id="lista">
+    <!--<li class="list">
+        <b>Nombre: </b> <span class="text-danger">descripcion...</span>
+    </li> -->
+</ul>
+```
+```js
+const lista = document.querySelector('#lista');
+
+const arrayLista = ['item 1', 'item 2', 'item 3'];
+
+// este fragment creado con let ira almacenando nuestra cadena 
+let fragment = ''
+arrayLista.forEach(item => {
+    // en este fragment iremos incorporando por cada vuelta la estructura
+    fragemnt += `
+    <li class="list">
+        <b>Nombre: </b> <span class="text-danger">${item}</span>
+    </li>
+    `// haciando esto evitariamos el reflow, sin embargo sigue teniendo un menor rentimiento que el createElement
+});
+lista.innetHTML = fragment;
+```
+- Entonces cual es la mejor solucion?
+El elemento HTML <template> es un mecanismo para manetener el contenido HTML del lado del cliente que no se renderiza cuando se carga una pagina, pero que posteriormente puede ser instanciado durante el tiempo de ejecucion empleando JavaScript.
+
+La mejor solucion seria utilizar tamplate y fragment.
+Los template sirven para hacer una estrucutra que podremos replicar en el ul.
+Se recomiend que los template los dejen abajo de todo el codigo html. por que es una guia que nosotros vamos a utilizar con js para usar lo.
+```html
+<body>
+    <ul id="lista">
+        <!--<li class="list">
+            <b>Nombre: </b> <span class="text-danger">descripcion...</span>
+        </li> -->
+    </ul>
+    <!-- paso 1: creamos nuestro template en nuestro html>
+    <template id="template-li">
+        <li class="list">
+            <b>Nombre: </b> <span class="text-danger">descripcion...</span>
+        </li>
+    </template>
+</body>
+```
+```js
+const lista = document.querySelector('#lista');
+
+const arrayLista = ['item 1', 'item 2', 'item 3'];
+
+const template = document.querySelector('#template-li').content //por que nos interesa el fragmento de la etiqueta entonces agregaremos un .content
+const fragment = document.createDocumentFragment()
+
+arrayLista.forEach(item => {
+    template.querySelector('.text-danger').textContent = item; // hay que ser mas especificos en dise;os de paginas ma conplejas
+    // posteriormente vamos a hacer un clon de nuestro template
+    const clone = template.cloneNode(true);
+    //luego empujamos el clon
+    fragment.appendCHild(clone);
+});
+
+lista.appendChild(fragment)
+```
+
+## addEventListener(click), event delegation y stopPropagation
+`addEventListener` es para detectar eventos por ejemplo cuando le hacemos click a un boton. Tiene muchas funcionalidades nosotros podemos detectar incluso cuando el mouse este sobre un elemento.
+
+primero vamos a agregar [Bootstrap](https://getbootstrap.com/ "Bootstrap") al html para hacer los estilos  a la velocidad de la luz.
+```html
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+```
+```html
+<body>
+    <div class="container py-5 bg-warning text-center">
+        <h1>Contador</h1>
+        <button class="btn btn-info">
+            Aumentar
+        </button>
+        <button class="btn btn-danger">
+            Disminuir
+        </button>
+        <h4 class="my-5">Contador: <span id="span">0</span></h4>
+    </div>
+<body>
+```
+```js
+const container = document.querySelector('.container');
+const btnDisminuir = document.querySelector('btn-danger');
+const span = document.getElementById('span');
+let contador = 0;
+
+container.addEventListener('click', (e) => {
+    //console.log(e.target) //esto nos mostrara las etiquetas que estamos clickeando
+    if(e.target.classList.contains('btn-info')){
+        contador ++;
+        span.textContent = contador;
+    };
+
+    if(e.target.classList.contains('btn-danger')){
+        contador --;
+        span.textContent = contador;
+    };
+});
+```
+
+- `stopPropagation` : indicarle que cuando hagamos click en un evento dentro del contenerdo solamente ese evento se ejecute y no se haga una propagacion, esto en el caso de que hayamos creamos un `addEventListener` en el body o quermaos evitar que se propage al contenedor padre.
+
+```js
+const container = document.querySelector('.container');
+const btnDisminuir = document.querySelector('btn-danger');
+const span = document.getElementById('span');
+let contador = 0;
+
+container.addEventListener('click', (e) => {
+    //console.log(e.target) //esto nos mostrara las etiquetas que estamos clickeando
+    if(e.target.classList.contains('btn-info')){
+        contador ++;
+        span.textContent = contador;
+    };
+
+    if(e.target.classList.contains('btn-danger')){
+        contador --;
+        span.textContent = contador;
+    };
+    e.stopPropagation()
+});
+
+document.body.addEventListener('click', () => {
+    console.log('diste click')
+});
+```
+`stopPropagation` no se debe confundir con `preventDefault`.
+`preventDefault` : cuando nosotro tenemos un formulario y le damos al boton de submit por defecto se hace una solucitud en `get`, por lo tanto con este `preventDefault` podemos evitar ese comportamiento.
