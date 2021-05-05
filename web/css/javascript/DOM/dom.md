@@ -381,3 +381,380 @@ document.body.addEventListener('click', () => {
 ```
 `stopPropagation` no se debe confundir con `preventDefault`.
 `preventDefault` : cuando nosotro tenemos un formulario y le damos al boton de submit por defecto se hace una solucitud en `get`, por lo tanto con este `preventDefault` podemos evitar ese comportamiento.
+
+## Practica de carrito de compras
+
+Creamos archivos `.json`, `.js` y `html` para nuestro proyecto.
+
+Para poder acceder o leer esos elementos de la `api.js` nosotros usamos lo que es el fetch.
+```js
+//codigo de javascript
+
+const items = document.getElementById("items");
+const templateCard = document.getElementById('template-card').content;// con esto estariamos accediendo a los elementos
+// podemos hacer el fragment directamente aca, recuerden que el fragment es como una memoria volatil por lo cual se puede ocupar para todas las cosas que queramos pintar mientras se quiera una estrucutra igual
+const fragment = document.createDocumentFragment();
+
+// tenemos un addEventListener que va a esperar que se lea todo nuestro html y luego ejecute alguna funcion 
+// el 'DOMContentLoaded' se dispara cuando el documento HTML ha sido completamente cargado y parseado, sin esperar hojas de estilos, images y subframes para finalizar la carga.
+document.addEventListener('DOMContentLoaded', () => {
+    fetchData() // con esto se estaria haciando la tarea principal de solamente capturar los datos
+});
+
+items.addEventListener('click', e => {
+    // con esto escuchariamos el click del boton
+    addCarrito(e)
+})
+
+// para usar el fech nosotros tenemos que usar una funcion de flecha
+const fetchData = async() => {
+    try {
+        // en el try nosotros hacemos la peticion
+        const res = await fetch('api.json');
+        const data = await res.json();
+        pintarCards(data);
+
+    } catch (error) {
+        console.log(error);
+    }
+};
+
+//ahora tendriamos que pintar la informacion.
+const pintarCards = data => {
+    // en este caso usaremos forEach por que la api esta en json, no vamos a hacer lo mismo cuando tengamos la correccion de los carritos por que va a ser una coleccion de objetos
+    data.forEach(producto => {
+        // como nosotroa ya tenemos el template y ya tenemos el fragment, ahora tenemos que acceder efectivamente a este esqueleto.
+        // en este caso vamos a modificar el h5
+        templateCard.querySelector('h5').textContent = producto.title;
+        templateCard.querySelector('p').textContent = producto.precio;
+        // setAttribute establece el valor de un atributo en el elemento indicado. Si el atributo ya existe, el valor es actualizado, en caso contrario, el atributo es a;adido con el nombre y valor indicado.
+        templateCard.querySelector('img').setAttribute("src", producto.thumbnailUrl);
+        templateCard.querySelector('.btn-dark').dataset.id = producto.id; // con esto estariamos vincualando el boton con su respectivo data-id, es una informacion primordial.
+
+        // ahora que tenemos el tempalete tenemos que hacer la clonacion
+        const clone = templateCard.cloneNode(true);
+        fragment.appendChild(clone)
+    })
+    items.appendChild(fragment);
+};
+```
+```html
+<!-- Codigo html-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <title>Carrito de compras</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Carrito</h1>
+        <hr>
+        <div class="row" id="items"></div>
+    </div>
+    <!-- Cuando tengamos que recorrer elemento y pintarlos en el sitio web, es recomentable utilizar <template> con los fragment para evitar el reflow, si es solo un elemento podemos crearlo con inerhtml-->
+    <template id="template-card">
+        <div class="col-12 mb-2 col-md-4">
+            <div class="card">
+                <img src="" alt="" class="card-img-top">
+                <div class="card-body">
+                    <h5>Titulo</h5>
+                    <p>precio</p>
+                    <button class="btn btn-dark">Comprar</button>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <script src="/code.js"></script>
+</body>
+</html>
+```
+
+### Agregar producto al carrito
+```js
+//codigo de js
+const items = document.getElementById('items');
+const templateCard = document.getElementById('template-card').content;
+const fragment = document.createDocumentFragment();
+let carrito = {}; // creamos este objeto carrito para agregar las cosas al carrito
+
+document.addEventListener('DOMContentLoaded', () => {
+    fetchData()
+});
+
+items.addEventListener('click', e => {
+    addCarrito(e);
+})
+
+
+const fetchData = async () => {
+    try {
+        
+        const res = await fetch('api.json');
+        const data = await res.json();
+        pintarCards(data);
+
+    } catch (error) {
+        console.log(error);
+    }
+};
+
+const pintarCards = data => {
+    data.forEach(producto => {
+        templateCard.querySelector('h5').textContent = producto.title;
+        templateCard.querySelector('p').textContent = producto.precio;
+        templateCard.querySelector('img').setAttribute("src", producto.thumbnailUrl);
+        templateCard.querySelector('.btn-dark').dataset.id = producto.id; 
+        const clone = templateCard.cloneNode(true);
+        fragment.appendChild(clone)
+    });
+    items.appendChild(fragment);
+};
+
+const addCarrito = e => {
+    //console.log(e.target);
+    //console.log(e.target.classList.contains('btn-dark')); // aqui estamos detectando el boton
+    if(e.target.classList.contains('btn-dark')){
+        setCarrito(e.target.parentElement);
+    };
+    e.stopPropagation();// nos servia para deterner algun otro evento que se pueda generar en nuestro 'items'
+};
+
+const setCarrito = objeto => {
+    // el 'objeto' sera todo lo que nosotros hemos seleccionado
+    // el setCarrito lo que va hacer es capturar todos esos elementos
+    const producto = {
+        //estamos accediendo a esa infomarcion
+        id: objeto.querySelector('.btn-dark').dataset.id,
+        title: objeto.querySelector('h5').textContent,
+        precio: objeto.querySelector('p').textContent,
+        cantidad: 1
+    };
+
+    // vamos a acceder al elemento que se esta repitiendo
+    if(carrito.hasOwnProperty(producto.id)){
+        //si esto existe significa que el producto se esta duplicando por lo tanto se tiene que aumentar la cantidad
+        producto.cantidad = carrito[producto.id].cantidad + 1;
+    }
+    // ahora tenemos que empujarlo al carrito
+    // los trespuntos '...' se hace llama spriteoperator, con los tres puntos solamente estamos adquiriendo la informacion que esta en producto, es decir que estamos haciendo una copia.
+    carrito[producto.id] = {...producto};
+
+    console.log(producto)
+};
+```
+```html
+<!-- codigo html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <title>Carrito de compras</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Carrito</h1>
+        <hr>
+        <div class="row" id="cards"></div>
+    </div>
+
+    <template id="template-card">
+        <div class="col-12 mb-2 col-md-4">
+            <div class="card">
+                <img src="" alt="" class="card-img-top">
+                <div class="card-body">
+                    <h5>Titulo</h5>
+                    <p>precio</p>
+                    <button class="btn btn-dark">Comprar</button>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <script src="/code.js"></script>
+</body>
+</html>
+```
+
+### Template del carrito de compras
+```html
+<!--codigo de html-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <title>Carrito de compras</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Carrito</h1>
+        <hr>
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Item</th>
+                <th scope="col">Cantidad</th>
+                <th scope="col">Acción</th>
+                <th scope="col">Total</th>
+              </tr>
+            </thead>
+            <tbody id="items"></tbody>
+            <tfoot>
+              <tr id="footer">
+                <th scope="row" colspan="5">Carrito vacío - comience a comprar!</th>
+              </tr>
+            </tfoot>
+          </table>
+        <div class="row" id="cards"></div>
+    </div>
+
+    <template id="template-card">
+        <div class="col-12 mb-2 col-md-4">
+            <div class="card">
+                <img src="" alt="" class="card-img-top">
+                <div class="card-body">
+                    <h5>Titulo</h5>
+                    <p>precio</p>
+                    <button class="btn btn-dark">Comprar</button>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <template id="template-footer">
+        <th scope="row" colspan="2">Total productos</th>
+        <td>10</td>
+        <td>
+            <button class="btn btn-danger btn-sm" id="vaciar-carrito">
+                vaciar todo
+            </button>
+        </td>
+        <td class="font-weight-bold">$ <span>5000</span></td>
+    </template>
+    
+    <template id="template-carrito">
+      <tr>
+        <th scope="row">id</th>
+        <td>Café</td>
+        <td>1</td>
+        <td>
+            <button class="btn btn-info btn-sm">
+                +
+            </button>
+            <button class="btn btn-danger btn-sm">
+                -
+            </button>
+        </td>
+        <td>$ <span>500</span></td>
+      </tr>
+    </template>
+
+    <script src="/code.js"></script>
+</body>
+</html>
+```
+```js
+// codigo de js
+const cards = document.getElementById('cards');
+const items = document.getElementById('items'); // se seleccionan los nuevos elementos d ela tabla
+const footer = document.getElementById('footer'); // se seleccionan los nuevos elementos d ela tabla
+const templateCard = document.getElementById('template-card').content;
+const templateFooter = document.getElementById('template-footer').content;// se seleccionan los nuevos templates
+const templateCarrito = document.getElementById('template-carrito').content;// se seleccionan los nuevos templates
+const fragment = document.createDocumentFragment();
+let carrito = {};
+
+document.addEventListener('DOMContentLoaded', () => {
+    fetchData()
+});
+
+cards.addEventListener('click', e => {
+    addCarrito(e);
+})
+
+
+const fetchData = async () => {
+    try {
+        
+        const res = await fetch('api.json');
+        const data = await res.json();
+        pintarCards(data);
+
+    } catch (error) {
+        console.log(error);
+    }
+};
+
+const pintarCards = data => {
+    data.forEach(producto => {
+        templateCard.querySelector('h5').textContent = producto.title;
+        templateCard.querySelector('p').textContent = producto.precio;
+        templateCard.querySelector('img').setAttribute("src", producto.thumbnailUrl);
+        templateCard.querySelector('.btn-dark').dataset.id = producto.id; 
+        const clone = templateCard.cloneNode(true);
+        fragment.appendChild(clone)
+    });
+    cards.appendChild(fragment);
+};
+
+const addCarrito = e => {
+    if(e.target.classList.contains('btn-dark')){
+        setCarrito(e.target.parentElement);
+    };
+    e.stopPropagation();
+};
+
+const setCarrito = objeto => {
+    
+    const producto = {
+        
+        id: objeto.querySelector('.btn-dark').dataset.id,
+        title: objeto.querySelector('h5').textContent,
+        precio: objeto.querySelector('p').textContent,
+        cantidad: 1
+    };
+
+    
+    if(carrito.hasOwnProperty(producto.id)){
+        producto.cantidad = carrito[producto.id].cantidad + 1;
+    }
+    
+    carrito[producto.id] = { ...producto };
+    pintarCarrito();
+};
+
+// ahora pintaremos lo del carrito en el dom
+const pintarCarrito = () => {
+    
+    // para que no ocurra un error en el carrito que se dibujen duplicados vamos a partir de un innerHTM vacio
+    items.innerHTML = ''
+
+    // podemos hacer un forEach pero antes tenemos que usar un Object.values por que estamos trabajando con un objeto y no se pueden usar las funciones de los array
+    Object.values(carrito).forEach(producto => {
+        //este producto tenemos que pintarlo
+        templateCarrito.querySelector('th').textContent = producto.id;
+        templateCarrito.querySelectorAll('td')[0].textContent = producto.title;
+        templateCarrito.querySelectorAll('td')[1].textContent = producto.cantidad;
+        templateCarrito.querySelector('.btn-info').dataset.id = producto.id;
+        templateCarrito.querySelector('.btn-danger').dataset.id = producto.id;
+        templateCarrito.querySelector('span').textContent = producto.cantidad * producto.precio;
+
+        const clone =  templateCarrito.cloneNode(true);
+        fragment.appendChild(clone);
+    })
+
+    // ahora si lo estariamos pintando
+    items.appendChild(fragment);
+};
+```
