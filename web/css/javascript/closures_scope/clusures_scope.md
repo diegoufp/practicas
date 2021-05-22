@@ -183,4 +183,139 @@ function comer() {
 
 Si, si queremos acceder a una variable global que esta oculta debemos hacerlo de alguna manera alternativa.
 
-Si la variable global esta declarada con `let` o con `const` en vez de `var` esta no se agrega como propiedad del objeto `window`
+Si la variable global esta declarada con `let` o con `const` en vez de `var` esta no se agrega como propiedad del objeto `window`.
+
+## CLOSURES
+Las Clasusuras o closere son estas funciones anidadas que recuerdan el conjunto de variables a las que podian acceder, por mas que se las invoque desde otro lugar, desde otro scope.
+Para crear una clausura o closure en javascript necesitamos 3 ingredientes:
+
+- Primero una funcion que se encuentre escrita adentro de otra funcion lo que conocemos como una funcion anidada.
+```js
+function crearContador() {
+    function incrementar(){    
+    };
+}
+```
+
+- Alguna variable que se encuentre en el scope de la funcion mas grande y que la funcion de adentro la utilice de alguna manera en este caso para incrementar su valor y devolver su valor incrementado.
+```js
+function crearContador() {
+    let contador = 0;
+
+    function incrementar(){
+        contador = contador + 1;
+        return contador;
+    };
+}
+```
+
+- Tercero, invocar a la funcion interna pero no desde el scope donde esta escrita si no que desde otros scope.
+
+```js
+function crearContador() {
+    let contador = 0;
+
+    return function incrementar(){
+        contador = contador + 1;
+        return contador;
+    };
+}
+
+const contador1 = crearContador();
+```
+si bien desde el scope global no podemos acceder a la variable `contador` por que es una variable local de la funcion `crearContador`. Como retornamos la funcion interna y la pasamos a una nueva varibale llamada `contador1` cuando la invoquemos esta va a serguir vinculada a la variable local y va a poder accederla normalmente.
+
+La funcion y la varible del ejemplo anterior estan unidos por un viculo ya que no solo se esta retornando la funcion si no que se esta retornando todo ese vinculo.
+
+Cuando decimos `vinculo` nos referimos  aun vinculo vivo no es que se genere una foto de la variable cuando se crea la funcion.
+```js
+function crearContador() {
+    let contador = 0;
+
+    return function incrementar(){
+        contador = contador + 1;
+        return contador;
+    };
+}
+
+const contador1 = crearContador();
+```
+Cuando se ejecuta la funcion esta accede al valor que tiene la varible en ese momento.
+
+Imaginate que dentro del scope local ponemos un timer con una funcion que modifica el contador poniendolo en 100 dentro de 5 segundos:
+```js
+function crearContador() {
+    let contador = 0;
+
+    setTimeout(funcion() {
+        contador = 100;
+    }, 5000);
+
+    return function incrementar(){
+        contador = contador + 1;
+        return contador;
+    };
+}
+
+const contador1 = crearContador();
+```
+
+Cuando ejecutemos este programa nuestra funcion comenzara en 0 y a medida que lo ejecutemos se van incrementando de a 1 como antes, pero al cabo de 5 segundos su valor se actualiza y la proxima vez que llamemos a la funcion veremos que su valos ahora es 101.
+
+### Entorno lexico 
+
+El **entorno lexico** es un objeto que tiene los contextos de ejecucion donde se almancenan los nombres de las variables que existen dentro de una funcion y los valores actuales que tienen. Son como un diccionario.
+
+En nuestro programa original, que crees que pasaria si despues de invocar a nuestro contador 3 veces volvemos a llamar a la funcion `crearContador` para crearnos otro contador, cuando lo invoquemos que valor va a tener ese nuevo contador?, y al viejo que le va a pasar?.
+```js
+function crearContador() {
+    let contador = 0;
+
+    return function incrementar(){
+        contador = contador + 1;
+        return contador;
+    };
+}
+
+const contador1 = crearContador();
+contador1();
+contador1();
+contador1();
+contador1();
+const contador2 = crearContador();
+contador2();
+```
+
+Las clausuras no solo tiene que ver son los scope y las variables sino que tambien con los distintos contextos de ejecucion que se van creando cada vez que ejecuta una funcion.
+
+Y para entender bien de que se trata esto tenemos que ver mas en detalle lo que pasa dentro de la pila de ejecucion, especialmente con algo que se llama `En torno Lexico` o `lexical environment`.
+
+Cuando javascrip empieza a ejecutar nuestro programa lo primero que hace es crear el contexto de ejecuacion inicial para eso crea el primer registro de la pila de ejecucion, un registro asociado a la funcion que engloba a todo el programa.
+
+Y todo contexto de ejecucion pasa por dos fases:
+- fase de creacion: Donde se carga en memoria todo lo necesario para ejecutar esa funcion, en esta etapa se incializa el registro con cierta informacion como el archivo al que pertenece la funcion, se coloca el puntero de la proxima linea a ejecutar, para el primer registro se crear el registro global (que en los navegadores es window), se pone el valor que va a tener `this` dentro de la funcion(que en este caso como no estamos en modo estricto va a apuntar al objeto window), tambien se asocia el contexto de ejecucion que se esta creando con el codigo que se va a ejecutar(en este caso todo nuestro script), se crea un **entorno lexico** son como un diccionario, tienen clave y valor, donde las claves son los nombres de las variables declaradas dentro de la funcion recibidas como parametros y lo valores son los valores actuales que tienen las variables y cuando le asignamos un nuevo valor a una variable esa actualizacion se hace aca en el entorno lexico donde se encuentre esa variable, los objetos, las funciones y los arraiz en verdad se guardan como referencias o punteros a las posiciones de memoria donde realmente se encuentran esos objetos.
+
+naturalmente dentro del mismo entorno lexico las claves son unicas, por que no podemos tener dos variables con el mismo nombre dentro de la misma funcion, si alguna vez lo googleas, esta parte de entorno lexico se llama `registro de entorno` o `environment record`.
+
+Cada entorno lexico tiene un puntero a su entorno lexico exterior, el entorno en el que este fue creado.
+
+Muchas veces cuando decimos que al ejecutarse una funcion se crea un nuevo scope para sus variables en verdad nos referiamos a este objeto el `entorno lexico`, el lugar donde se van a almacenar las variables y parametros que utiliza esa funcion.
+
+En nuestro caso para la funcion global javascript ya sabe que existen 3 identificadores de variables, el nombre de la funcion que es un identificador mas y como es una funcion que es declarada, se carga por completo en memoria directamente cuando se esta creando este contexto de ejecucion y cada vez que javascript crea una nueva funcion en memoria la vincula al entorno donde la creo, asi esta funcion queda vinculada al entorno lexico global.
+
+Veamoslo de otra forma, cada objeto que contiene una funcion tiene una propieda oculta llamada `crearContador.[[Entono]]` la cual apunta al entorno lexico donde se creo esa funcion, ademas en el entorno lexico global, estan estan nuestras dos variables `contador1` y `contador2`. Como ambas estan declaradas con `const` su valor inicial es no inicializada , su ubiesen estado declaradas con `var` su valor seria undefined, recordemos que esto es lo que se conoce como hosting en javascript darle valores iniciales a las variables y cargar las funciones en memoria junto antes de comenzar la ejecucion de las funciones, y por ultimo cada entorno lexico guarda un puntero de entorno lexico exterior pero en el caso de la funcion global este puntero va a estar vacio ya que es el primer entorno que se esta creando.
+
+Ahora si se apila esta registro en la pila de ejecicion y comienza la fase de ejecucion javascript va ejecutando sentencia por sentencia, las declaraciones de funciones o de variables le sirvieron a javascript en la fase anterior para crear el entorno lexico con sus valores iniciales pero aun tiene que ejecutarlas, asi que pasa directamente al `contar1` donde se encuentra con una asignacion, estamos asignando el resultado de ejecutar una funcion. 
+
+crea un nuevo contexto de ejecucion para esta funcion, carga la informacion necesaria que vimos antes, el nombre del archivo al que pertenece la funcion, cual es la proxima instruccion a ejecutar , le da un valor inicial a `this:window` (como no estamos en modo extricto y es una funcion suelta esta variable va apuntar al objeto global) y en este caso no se crea un objeto global por que no estamos en la funcion global y este ya fue creado, pero si se crea `arguments: {...}` (un objeto similar a los arrays que contienen todos los argumentos que recibe la funcion cuando se le invoco) y como antes se crea un entorno lexico con las variable declaradas en la funcion o recibidas como parametros y a que conceta este entorno lexico con su entorno lexico exterior, ahora si, terminada la fase de creacion de este nuevo contexto de ejecucion se apila y se comienza a ejecturar. 
+
+Al estar retornando una funcion como su fuera cualquier otro valor javascript en otro momento crea una nueva instancia de esta funcion en memoria, es como sic reara un nuevo objeto, pero al tratarse de una funcion va a conectarla al entorno donde esta siendo creada.
+
+Esta es la `clausura` una funcion que pasamos de aca para alla como si fuera una variable mas pero que sigue conectada al entorno lexico en el que fue creada.
+
+Aqui es donde se viene lo interesante.
+
+`const contador2 = crearContador();`
+Se vuelve a invocar a la funcion grande, para ejecutarla el motor de java script crea un nuevo contexto de ejecucion para ejecutar esta funcion y es uno nuevo, no reutiliza el contexto de ejecucion que habia creado para la primera ejecucion.
+
+**CADA VEZ QUE SE EJECUTA UNA FUNCION EN JAVASCRIPT, SE CREA UN NUEVO CONTEXTO DE EJECICION CON UN NUEVO ENTORNO LEXICO**
