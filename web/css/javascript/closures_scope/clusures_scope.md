@@ -319,3 +319,112 @@ Aqui es donde se viene lo interesante.
 Se vuelve a invocar a la funcion grande, para ejecutarla el motor de java script crea un nuevo contexto de ejecucion para ejecutar esta funcion y es uno nuevo, no reutiliza el contexto de ejecucion que habia creado para la primera ejecucion.
 
 **CADA VEZ QUE SE EJECUTA UNA FUNCION EN JAVASCRIPT, SE CREA UN NUEVO CONTEXTO DE EJECICION CON UN NUEVO ENTORNO LEXICO**
+
+### USO DE LAS CAUSULAS: PROTEGER ACCESO A VARIABLES
+Como cada contador fue creado en entronos distintos, solo pueden ser modificados por la funciones que pueden acceder a cada uno de esos entornos y esto es super importantes. 
+
+- Proteger el acceso a las varibles es el primer uso que tienen las clausuras.
+
+```js
+function crearContador() {
+    ler contador =0;
+
+    return {
+        incrementar: function() {
+            contador = contador + 1;
+            return contador;
+        },
+        decrementar: function() {
+            contador = contador - 1;
+            return contador;
+        },
+        obtenerValor: function() {
+        }
+    }
+}
+
+const contador1 = crearContador();
+// ahora nuestro contador1 no es una funcion sino un objeto, asi que para incrementarlo, debemos hacerlo de esta manera:
+contador1.incrementar();
+contador1.decrementar();
+contador1.obtenerValor();
+```
+
+Muchas veces utilizamos la palabra `API` para referirnos a la interfaz que tiene un objeto para interactuar con el mismo, es decir, que metodo debemos invocar sobre ese objeto y que propiedades internas nos permite acceder.
+
+`API` (DE UN OBJETO): La interfaz que tiene un objeto para interactuar con el mismo.
+Que metodos podemos invocar sobre ese objeto y que propiedades internas nos permite acceder.
+
+Las `clausulas` son muy buenas para construir estas `APIs, para decir de que manera queremos interactuar con un objeto pero protegiendo el acceso a las variables internas.
+
+Las `clausulas` son excelentes para especie de variables privadas a las que solo ellas pueden acceder, el otro uso que tien es como fabrica de funciones.
+
+### USO DE LAS CAUSULAS: FABRICA DE FUNCIONES
+
+En lugar de usar una variable local para iniciar nuestro contador, podemos usar un `parametro`, los parametros que reciber las funciones actuan como variables locales dentro de la funcion, se guardan dentro del entorno lexico tambien y las clausuras pueden seguir accediendo a esa variables igual que antes
+
+
+```js
+function crearContador(contador = 0) {
+
+    return {
+        incrementar: function() {
+            contador = contador + 1;
+            return contador;
+        },
+        decrementar: function() {
+            contador = contador - 1;
+            return contador;
+        },
+        obtenerValor: function() {
+            return contador;
+        }
+    }
+}
+
+const contador1 = crearContador();
+```
+
+### EJEMPLOS AVANZADOS
+Podemos escribir un mensaje de error junto con el codigo de css que queremos que se escriba en consola:
+
+```
+///consola
+
+console.log('%c Error: el usuario no esta registrado', 'background: red, color:white;')
+
+console.log('%c Warn: el usuario no tiene direccion', 'background: orange, color:white;')
+
+console.log('%c Exito: usuario registrado', 'background: green, color:white;')
+```
+
+```js
+// javascript
+function error(str){
+    console.log(`%c Error: ${str} `, 'background: red, color:white;');
+}
+
+function error(str){
+    console.log(`%c Warning: ${str} `, 'background: orange, color:white;');
+}
+
+function error(str){
+    console.log(`%c Exito: ${str} `, 'background: green, color:white;')
+}
+```
+
+- **La funcion del ejemplo:**
+```js
+function crearImpresoraDeMensajes(tipo, str, estilo) {
+    return function mensajes(tipo, str, estilo) {
+        console.log(`%c ${tipo}: ${str}`: estilos);
+    }
+}
+
+const error = crearImpresoraDeMensajes('Error', 'background: red; color:white;');
+const warning = crearImpresoraDeMensajes('Warning', 'background: orange; color:white;');
+const exito = crearImpresoraDeMensajes('Exito', 'background: green; color:white;');
+// ademas de esto es mas general, podemos escribir cualquier pode de mensaje y co
+```
+
+se queda se queda peniente probar el codigo en el navegador
