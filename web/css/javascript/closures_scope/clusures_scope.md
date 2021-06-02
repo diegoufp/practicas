@@ -415,16 +415,59 @@ function error(str){
 
 - **La funcion del ejemplo:**
 ```js
-function crearImpresoraDeMensajes(tipo, str, estilo) {
-    return function mensajes(tipo, str, estilo) {
-        console.log(`%c ${tipo}: ${str}`: estilos);
+function crearImpresoraDeMensajes(tipo, str, estilos) {
+    return function mensajes(tipo, str, estilos) {
+        console.log(`%c ${tipo}: ${str}`, estilos);
     }
 }
 
 const error = crearImpresoraDeMensajes('Error', 'background: red; color:white;');
 const warning = crearImpresoraDeMensajes('Warning', 'background: orange; color:white;');
 const exito = crearImpresoraDeMensajes('Exito', 'background: green; color:white;');
-// ademas de esto es mas general, podemos escribir cualquier pode de mensaje y co
+// ademas de esto es mas general, podemos escribir cualquier pode de mensaje 
 ```
 
-se queda se queda peniente probar el codigo en el navegador
+### CLAUSURAS Y EL GARBAGE COLLECTOR
+Debemos ser cuidadosos con las clausuras que creamos o si no podemos ocupar un monton de memoria de la computadora con nuestros programas.
+```js
+function crearImpresoraDeMensajes(tipo, str, estilos) {
+    const estilosPorDefecto = 'color: white;';
+    return function mensajes(str) {
+        console.log(`%c ${tipo}: ${str}`,estilosPorDefecto + estilos);
+    }
+}
+
+const error = crearImpresoraDeMensajes('Error', 'background: red;');
+const warning = crearImpresoraDeMensajes('Warning', 'background: orange;');
+const exito = crearImpresoraDeMensajes('Exito', 'background: green; ');
+```
+
+Por como escribimos nuestro programa estamos almancenando el mismo string en el entorno de cada clausura que creemos. Como es un string que ocupa 13 caracteres `'color: white;'` y cada uno de estos ocupa 2 bits, para cada impresora que creamos estamos ocupado 26 bits de memoria fijos, aparte del tipo y los estilos que pueden ir variando de tama;o para cada una de ellas.
+
+Esta bien, 26 bits no es tanto espacio en la memoria, pero si en vez de un string tuvieramos un objeto o un array y estuvieramos creando muchas clausuras, por ejemplo una para cada tipo de un listado de un sitio web entonces muy facilmente podria convetirse en un uso de espacio de memoria considerable.
+
+En estos casos donde tenemos una constante que queremos que cada fabrica nueva pueda acceder, lo que solemos hacer es mover esta variable a fuera de la fabrica, pero dejandola cerca de donde creamos nuestra fabrica para saber que estan intimamente relacionadas.
+```js
+const estilosPorDefecto = 'color: white;';
+function crearImpresoraDeMensajes(tipo, str, estilos) {
+    
+    return function mensajes(str) {
+        console.log(`%c ${tipo}: ${str}`,estilosPorDefecto + estilos);
+    }
+}
+
+const error = crearImpresoraDeMensajes('Error', 'background: red;');
+const warning = crearImpresoraDeMensajes('Warning', 'background: orange;');
+const exito = crearImpresoraDeMensajes('Exito', 'background: green; ');
+```
+Ahora en vez de que esta variable este en el entorno lexico de cada clausura la movimos a un entorno donde todos pueden accederla, ahorrandonos un poco de espacio en la memoria.
+
+Esta bueno hacer un uso eficiente de la memoria, asi nuestras aplicaciones son mas rapidas para los usuarios y asi tambien le permitimos usar varias aplicaciones o ver multiples sitios web al mismo tiempo son destruir su computador o su celular.
+
+Ademas, esta bueno saber que mientras estas variables contengan las clausuras sus entornos lexicos van a seguir existiendo en la memoria.
+
+JavaScrio recien va a borrar el entorno lexico de la memoria cuando detecte que no hay forma de accederlo, es decir, cuando bno quede ninguna funcion dando vueltas por ahi vinculada a ese entono.
+
+Asi trata garbage collector a las clausuras, generalmente no hace falta que nosotros liberemos el espacio de las clausuras asignadole `null` a una variable, simplemente cuando javascript detecte que no tiene forma de acceder a esos entornos va a liberar ese espacio por nosotros.
+
+Pero este es un recordatorio de que si en algun lugar de tu aplicacion estas agregando el evento de algun accion de un usuario, probablemente tambien tengas que incluir la instruccion para sacar ese dento. Si no javascript va a seguir ocupado espacio en memoria con el entorno de esta funcion.
