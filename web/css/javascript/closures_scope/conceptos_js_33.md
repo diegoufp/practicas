@@ -272,3 +272,4 @@ isNaN(NaN)
 ```
 
 - **Boolean**
+
