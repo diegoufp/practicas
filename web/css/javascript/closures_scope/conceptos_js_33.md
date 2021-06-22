@@ -272,4 +272,134 @@ isNaN(NaN)
 ```
 
 - **Boolean**
+Si un valor es de tipo **boolean** solo puede tener dos valores posibles: `true` o `false`. Algo que solamente puede tener dos estados posibles **prendido** y **apagado**.
 
+Podemos asignarle un **boolean** a una variable para **inicializarla**: `var esMayor = false`.
+O tambien podemos obtener un boolean atravez de una comparacion:
+```js
+var edad = 21;
+var esMayor = edad > 18;
+```
+
+Y para tener el valor opuesto de un oblean usamos `!`:
+```js
+!esMayor
+// false
+// el valor original era true pero con el signo de esclamacion arroja el valor opuesto
+```
+
+Si queremos sabes si multiples valores son `true` al mimso tiempo podemos usar el operador `&&`. Ejemplo:
+```js
+esMayor && esMayor
+```
+
+Y si queremos saber que almenos uno de los dos es verdadero entondes podemos usar el operador `||` el cual seria un operador `or`. Ejemplo:
+```js
+esMayor || esMayor
+```
+
+Otra cosa tambien muy importante que tenemos que saber de los boolean es que si bien no hay valores que son de tipo boolean pueden llegar a ser evaluados como tal. Como por ejemplo en el caso dentro de la condicion de un if:
+```js
+var cantidadDeMensajesSinLeer = 10;
+
+if (cantidadDeMensajesSinLeer) { //es de tipo `number` pero se infiere como `boolean`
+    console.log(`Tenes ${cantidadDeMensajesSinLeer} mensajes no leidos`);
+} else {
+    console.log('No tenes mensaje sin leer');
+}
+// en este caso el motor va a inferir que queremos usarlo como boolean y va a convertirlos automaticamente a `true` o `false` 
+```
+ 
+- **VALORES FALSOS**
+Los Valores son los valores que van  a ser evaluados como `false`(ademas del `false`) y esos son `''`, `0`, `null`, `undefined` y `NaN`. Cualquier otro valor que se nos ocurra que no sean los antes mencionados va ser verdadero. Incluso un string que diga `'false'` va a ser evaluado como verdadero:
+```js
+if ('false') {
+    console.log('Este codigo se va a ejecutar');
+}
+```
+Tambien el numero `-1` va a ser evaluado como verdadero:
+```js
+if(-1) {
+    console.log('Este tambien')
+}
+```
+o tambien cualquier objeto vacio:
+```js
+var obj = {};
+if (obj) {
+    console.log('El objeto vacio tambien es evaluado como verdadero')
+}
+```
+o un array vacio:
+```js
+var arr = [];
+if (){
+    console.log('Y el array vacio tambien');
+}
+```
+
+Y si queremos **convertir** algun valor a **bolean** podemos usar el doble signo de exclamacion:
+```js
+// el primer signo de exclamacion va a darnos el valor boolean opuesto al valor original. por ejemplo a true en el caso de un string vacio
+var texto = ''
+!texto
+//true
+// el segundo signo de exclamacion va a negar este ultimo valor
+!!texto
+//false
+// y asi dandonos el valor boolear original y no el opuesto 
+```
+
+### Que es un objeto primitivo segunda parte
+Como es que podemos hacer algo como:
+```js
+var nombre = 'Sancha';
+nombre.toUpperCase()
+//"SANCHA"
+```
+Si dijimos que los dato primitivos no tienen ni propiedades ni metodos. Bueno los tipos de datos primitivos `string`, `number` y `boolean` tienen sus equivalentes en el mundo de los objetos.
+
+Por ejemplo podemos crear objetos `string`, `number` o `boolean` de esta manera:
+```js
+var nombre = new String('Sacha')
+String{"Sacha"}
+```
+
+Pero no te aconsejo que lo hagas por que ahora estas variable son objetos, no son valores primitivos y podemos obtener resultados que no esperabamos.
+Como por ejemplo:
+```js
+var leGuataElSambayon = new Boolean(false)
+// por ejemplo si escribimos un if dependiendo de ese valor
+if (leGuataElSambayon) {
+    console.log('Se va a ejecutar esto');
+} else {
+    console.log('Esto no');
+}
+// como ahora tenemos un objeto (leGuataElSambayon) por la coercion de tipos va a ser evaluado como verdadero en el if
+```
+Estos objetos los va a usar el motor de javascript de manera tranparente para nosotros.
+
+Cada vez que queremos acceder a un atributo o llamar a un metodo de un valor primitivo el motor de javascript va a crear uno de estos objetos temporalmente solo para poder acceder a ese atributo o llamar ese metodo.
+
+A este objeto temporal se le conoce como **OBJECT WRAPPER**, es un objeto de **envuelve a un valor primitivo** cuando queremos acceder a una propiedad o llamara un metodo del mismo. Y es **temporal** por que el moto lo utiliza **solo una fraccion de segundos**. Despues lo desecha, lo borra de la memoria.
+
+- **NULL**
+Es el tipo de dato para representar la **ausencia de valor**. Sirve para decir que una variable no contiene nada, esta vacia o que todavia no conocemos su valor. Se utiliza mucho para inicializar variables que posiblemente despues si resivan algun valor.
+
+**NULL** es un tipo de dato aaparte que solo tiene un valor posible: `null`
+
+- **UNDEFINED**
+Significa **tipo de dato desconocido** y es el valor que se le asigna automaticamente a las variables cuando las declaramos y no las inicializamos, es un tipo de datos distinto al de `null`.
+
+Y si una funcion se termina de ejecutar llegando hasta el final, sin hacer un `return` nos va a retornar este valor por defecto.
+
+Y tambien podemos verlo cuando no enviamos un parametro a una funcion, este va a recibir el valor `undefined`:
+```js
+function saludar(nombre) {
+    console.log(typeof nombre);
+}
+saludar();
+//undefined
+```
+
+### Cual deberiamos usar: null o undefined
