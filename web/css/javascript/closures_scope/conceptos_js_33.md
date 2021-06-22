@@ -403,3 +403,31 @@ saludar();
 ```
 
 ### Cual deberiamos usar: null o undefined
+
+Tecnicamente podemos asignarle `undefined` a una variable, pero no es lo recomendado.
+
+Si queremos decir que una varible esta vacia, deberiamos asignarle el valor `null`.
+
+**UNDEFINED** Es un valor que deberiamos dejar para que el motor de JavaScript asigne **automaticamnete**.
+Si podemos preguntar si el valor de una variable es `undefined`:
+```js
+typeof unaVarible === 'undefined'
+// true
+```
+Esto significare que toda via no se le dio **ningun valor**, no se recibio ese parametro. una funcion se termino de ejecutar hasta el final sin devolver ningun valor.
+
+Y **tenemos que tenemos mucho cuidado** con los valores `null` y `undefined`. Si tienemos una variable que tenga alguno de estos valores y queremos acceder a alguna propiedad o metodo en ella, vamos a tener un error que es de los ams comunes en javascript.
+`Null` y `undefinded` no tienen object raperts como los `strings`, `numbers` o `boolean`, por eso es que tenemos que tener mucho mas cuidado con estos valores.
+
+Si preguntamos po rle tipo de dato de `null` te va a sorprender el resultado de esta operacion, es `object`. Esto podria dejarnos pensando que el tipo de datos de `null` es `object`, pero no lo es, `null` es un tipo de dato primitivo. Y apesar de que `typeof null === 'object` sea `true`, `null` es uno de los valores falsos.
+
+Si a `null` se le evalua dentro de la condicion de un if, la ejecucion va a continuar con el bloque `else`:
+```js
+if (null){
+    console.log('Esto no se va a ejecutar');
+} else {
+    console.log('ESto si, porque null es un valor falso')
+}
+```
+
+- **SYMBOL**
